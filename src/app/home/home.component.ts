@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private write: boolean;
   private labelText: string[];
 
+  // tslint:disable:max-line-length
   constructor(
-    private ngZone: NgZone,
+    private ngZone: NgZone
   ) {
     this.cont = 0;
     this.phrase = 0;
@@ -44,7 +45,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // tslint:disable:max-line-length
     this.ngZone.runOutsideAngular(() => {
       this.timer = setInterval(() => {
         this._printToMilestone();

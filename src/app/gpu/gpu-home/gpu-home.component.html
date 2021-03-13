@@ -1,27 +1,51 @@
 <div class="row">
   <div class="col-twelve">
-    <button appNativeMobileButton (shortPress)="generateMatrices()">Generate matrices</button>
-    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()">Calculate result</button>
-
-    <div class="row">
-      <div class="col-six" *ngFor="let row of matrixA$ | async">
-        <div>
-          {{ row | json }}
-        </div>
-      </div>
-
-      <div class="col-six" *ngFor="let row of matrixB$ | async">
-        <div>
-          {{ row | json }}
-        </div>
-      </div>
-
-      <div class="col-twelve" *ngFor="let row of matrixResult$ | async">
-        <div>
-          {{ row | json }}
-        </div>
-      </div>
-    </div>
-
+    Hide print: <input type="checkbox" #ElementHide>
+    <input placeholder="Matrices dimension" type="number" [readOnly]="readonly" [formControl]="matrixSize" #ElementMatrixSize>
+    <button appNativeMobileButton (shortPress)="generateMatrices()" *ngIf="ElementMatrixSize.value > 0">Generate matrices</button>
+    <button appNativeMobileButton (shortPress)="clear()">Clear</button>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-twelve">
+    <button appNativeMobileButton (shortPress)="cpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && matrixA && matrixB">Calculate result (CPU)</button>
+    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && matrixA && matrixB">Calculate result (GPU)</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-six" *ngIf="cpuTime">
+    CPU Time: {{ cpuTime }}
+  </div>
+  <div class="col-six" *ngIf="gpuTime">
+    GPU Time: {{ gpuTime }}
+  </div>
+</div>
+
+<ng-container *ngIf="!ElementHide.checked">
+  <div class="row">
+    <div class="col-twelve" *ngFor="let row of matrixA$ | async">
+      <div>
+        {{ row | json }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-twelve" *ngFor="let row of matrixB$ | async">
+      <div>
+        {{ row | json }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-twelve" *ngFor="let row of matrixResult$ | async">
+      <div>
+        {{ row | json }}
+      </div>
+    </div>
+  </div>
+
+</ng-container>

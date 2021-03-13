@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { GpuRoutingModule } from './gpu-routing.module';
 import { GpuHomeComponent } from './gpu-home/gpu-home.component';
 import { NativeMobileModule } from '../native-mobile/native-mobile.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { NativeMobileModule } from '../native-mobile/native-mobile.module';
   imports: [
     CommonModule,
     GpuRoutingModule,
-    NativeMobileModule
+    NativeMobileModule,
+    ReactiveFormsModule
   ]
 })
 export class GpuModule { }
