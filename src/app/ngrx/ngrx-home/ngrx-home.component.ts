@@ -13,26 +13,6 @@ export class NgrxHomeComponent implements OnInit {
   count$: Observable<number>;
   actions: { increment?: ActionCreator, decrement?: ActionCreator, reset?: ActionCreator };
 
-  stopAction: boolean;
-
-  intervalHandler: any;
-  timeoutHandler: any;
-
-  @HostListener('touchstart', ['$event']) touchstart($event: TouchEvent): void {
-    switch (($event.target as HTMLElement).id) {
-      case 'increment':
-        this.mousedown(increment);
-        break;
-      case 'decrement':
-        this.mousedown(decrement);
-        break;
-    }
-  }
-
-  @HostListener('touchend', ['$event']) touchend(): void {
-    this.mouseup();
-  }
-
   constructor(
     private store: Store<{ count: number }>
   ) {
@@ -44,43 +24,14 @@ export class NgrxHomeComponent implements OnInit {
   }
 
   increment(): void {
-    if (!this.stopAction) {
-      this.store.dispatch(increment());
-    }
+    this.store.dispatch(increment());
   }
 
   decrement(): void {
-    if (!this.stopAction) {
-      this.store.dispatch(decrement());
-    }
+    this.store.dispatch(decrement());
   }
 
   reset(): void {
     this.store.dispatch(reset());
-  }
-
-  mousedown(action): void {
-    this.stopAction = false;
-
-    this.timeoutHandler = setTimeout(() => {
-      this.intervalHandler = setInterval(() => {
-        this.store.dispatch(action());
-      }, 100);
-
-      this.stopAction = true;
-      this.timeoutHandler = null;
-    }, 600);
-  }
-
-  mouseup(): void {
-    if (this.timeoutHandler) {
-      clearInterval(this.timeoutHandler);
-      this.timeoutHandler = null;
-    }
-
-    if (this.intervalHandler) {
-      clearInterval(this.intervalHandler);
-      this.intervalHandler = null;
-    }
   }
 }

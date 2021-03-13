@@ -16,7 +16,7 @@ import { counterReducer } from './ngrx/reducer/counter.reducer';
     AppComponent,
     HomeComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

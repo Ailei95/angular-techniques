@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faPrescription } from '@fortawesome/free-solid-svg-icons';
+import { faPrescription, faMicrochip } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+
+interface UrlIcon {
+  icon: IconDefinition;
+  url: string;
+}
 
 @Component({
   selector: 'app-menu',
@@ -8,11 +14,19 @@ import { faHome, faPrescription } from '@fortawesome/free-solid-svg-icons';
 })
 export class MenuComponent implements OnInit {
 
-  faHome = faHome;
-  faPrescription = faPrescription;
+  icons: UrlIcon[] = [];
 
   constructor() {
 
+    this.icons.push({
+      icon: faPrescription,
+      url: '/ngrx'
+    });
+
+    this.icons.push({
+      icon: faMicrochip,
+      url: '/gpu'
+    });
   }
 
   ngOnInit(): void {

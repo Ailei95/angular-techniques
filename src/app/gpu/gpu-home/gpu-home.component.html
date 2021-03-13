@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-twelve">
+    <button appNativeMobileButton (shortPress)="generateMatrices()">Generate matrices</button>
+    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()">Calculate result</button>
+
+    <div class="row">
+      <div class="col-six" *ngFor="let row of matrixA$ | async">
+        <div>
+          {{ row | json }}
+        </div>
+      </div>
+
+      <div class="col-six" *ngFor="let row of matrixB$ | async">
+        <div>
+          {{ row | json }}
+        </div>
+      </div>
+
+      <div class="col-twelve" *ngFor="let row of matrixResult$ | async">
+        <div>
+          {{ row | json }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

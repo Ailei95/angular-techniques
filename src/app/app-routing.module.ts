@@ -1,15 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
-  },
-  {
     path: 'ngrx',
     loadChildren: () => import('./ngrx/ngrx.module').then(m => m.NgrxModule)
+  },
+  {
+    path: 'gpu',
+    loadChildren: () => import('./gpu/gpu.module').then(m => m.GpuModule)
   }
 ];
 
