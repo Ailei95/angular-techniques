@@ -1,20 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
 import { generateMatrix, resetMatrix, cpuMultiplyMatrix, gpuMultiplyMatrix } from '../store/matrix.actions';
-import {getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
+import {getMatrixState, getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
 
 @Component({
   selector: 'app-gpu-home',
   templateUrl: './gpu-home.component.html',
   styleUrls: ['./gpu-home.component.css']
 })
-export class GpuHomeComponent implements OnInit {
-
-  matrixA: Array<Array<number>>;
-  matrixB: Array<Array<number>>;
-
+export class GpuHomeComponent implements OnInit, OnDestroy {
 
   cpuTime$: Observable<number>;
   gpuTime$: Observable<number>;
@@ -35,6 +31,11 @@ export class GpuHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  changeDetection(): void {
+    console.log('change');
   }
 
   generateMatrices(matrixSize: string): void {
@@ -52,5 +53,8 @@ export class GpuHomeComponent implements OnInit {
 
   clear(): void {
     this.store.dispatch(resetMatrix());
+  }
+
+  ngOnDestroy(): void {
   }
 }
