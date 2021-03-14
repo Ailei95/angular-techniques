@@ -1,25 +1,30 @@
 <div class="row">
   <div class="col-twelve">
-    Hide print: <input type="checkbox" #ElementHide>
-    <input placeholder="Matrices dimension" type="number" [readOnly]="readonly" [formControl]="matrixSize" #ElementMatrixSize>
-    <button appNativeMobileButton (shortPress)="generateMatrices()" *ngIf="ElementMatrixSize.value > 0">Generate matrices</button>
+    Hide matrices: <input type="checkbox" #ElementHide>
+    <input placeholder="Matrices dimension" type="number"
+            [ngModel]="matrixSize$ | async" #ElementMatrixSize>
+    <button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)"
+            *ngIf="ElementMatrixSize.value > 0">Generate matrices</button>
     <button appNativeMobileButton (shortPress)="clear()">Clear</button>
   </div>
 </div>
 
 <div class="row">
   <div class="col-twelve">
-    <button appNativeMobileButton (shortPress)="cpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && matrixA && matrixB">Calculate result (CPU)</button>
-    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && matrixA && matrixB">Calculate result (GPU)</button>
+    <button appNativeMobileButton (shortPress)="cpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && (matrixSize$ | async) > 0">Calculate result (CPU)</button>
+    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()" *ngIf="ElementMatrixSize.value > 0 && (matrixSize$ | async) > 0">Calculate result (GPU)</button>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-six" *ngIf="cpuTime">
-    CPU Time: {{ cpuTime }} ms
+  <div class="col-twelve">
+    Matrix size: {{ matrixSize$ | async }}
   </div>
-  <div class="col-six" *ngIf="gpuTime">
-    GPU Time: {{ gpuTime }} ms
+  <div class="col-six" *ngIf="cpuTime$ | async">
+    CPU Time: {{ cpuTime$ | async }} ms
+  </div>
+  <div class="col-six" *ngIf="gpuTime$ | async">
+    GPU Time: {{ gpuTime$ | async }} ms
   </div>
 </div>
 

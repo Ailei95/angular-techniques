@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {GPU} from 'gpu.js';
-import {Subject} from 'rxjs';
-import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+
+import { generateMatrix, resetMatrix, cpuMultiplyMatrix, gpuMultiplyMatrix } from '../store/matrix.actions';
+import {getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
 
 @Component({
   selector: 'app-gpu-home',
@@ -10,104 +12,45 @@ import {FormControl} from '@angular/forms';
 })
 export class GpuHomeComponent implements OnInit {
 
-  gpu: GPU;
-
-  matrixSize = new FormControl();
-
   matrixA: Array<Array<number>>;
   matrixB: Array<Array<number>>;
 
-  matrixA$: Subject<Array<Array<number>>> = new Subject();
-  matrixB$: Subject<Array<Array<number>>> = new Subject();
 
-  matrixResult$: Subject<Array<Array<number>>> = new Subject();
+  cpuTime$: Observable<number>;
+  gpuTime$: Observable<number>;
+  matrixSize$: Observable<number>;
+  matrixA$: Observable<Array<Array<number>>>;
+  matrixB$: Observable<Array<Array<number>>>;
+  matrixResult$: Observable<Array<Array<number>>>;
 
-  readonly = false;
-
-  cpuTime: number;
-  gpuTime: number;
-
-  constructor() {
-    this.gpu = new GPU();
-
-    console.log(this.gpu);
+  constructor(
+    private store: Store<{ matrix: Array<Array<number>> }>
+  ) {
+    this.cpuTime$ = this.store.pipe(select(getCpuTime));
+    this.gpuTime$ = this.store.pipe(select(getGpuTime));
+    this.matrixSize$ = this.store.pipe(select(getMatrixSize));
+    this.matrixA$ = this.store.pipe(select(getMatrixA));
+    this.matrixB$ = this.store.pipe(select(getMatrixB));
+    this.matrixResult$ = this.store.pipe(select(getMatrixResult));
   }
 
   ngOnInit(): void {
   }
 
-  generateMatrices(): void {
-    this.matrixA = [];
-    this.matrixB = [];
-
-    for (let y = 0; y < this.matrixSize.value; y++) {
-      this.matrixA.push([]);
-      this.matrixB.push([]);
-      for (let x = 0; x < this.matrixSize.value; x++) {
-        this.matrixA[y].push(Math.floor((Math.random() * 100)));
-        this.matrixB[y].push(Math.floor((Math.random() * 100)));
-      }
-    }
-
-    this.readonly = true;
-
-    this.matrixA$.next(this.matrixA);
-    this.matrixB$.next(this.matrixB);
-    this.matrixResult$.next(null);
+  generateMatrices(matrixSize: string): void {
+    // tslint:disable-next-line:radix
+    this.store.dispatch(generateMatrix({matrixSize: parseInt(matrixSize)}));
   }
 
   cpuMultiplyMatrix(): void {
-    const startTime = performance.now();
-    const productRow = Array.apply(null, new Array(this.matrixSize.value)).map(Number.prototype.valueOf, 0);
-    const product = new Array(this.matrixSize.value);
-
-    for (let p = 0; p < this.matrixSize.value; p++) {
-      product[p] = productRow.slice();
-    }
-
-    for (let i = 0; i < this.matrixSize.value; i++) {
-      for (let j = 0; j < this.matrixSize.value; j++) {
-        for (let k = 0; k < this.matrixSize.value; k++) {
-          product[i][j] += this.matrixA[i][k] * this.matrixB[k][j];
-        }
-      }
-    }
-
-    const endTime = performance.now();
-    this.cpuTime = (endTime - startTime);
-    this.matrixResult$.next(product as Array<Array<number>>);
+    this.store.dispatch(cpuMultiplyMatrix());
   }
 
   gpuMultiplyMatrix(): void {
-    const startTime = performance.now();
-
-    const multiplyMatrix = this.gpu.createKernel(function(a: number[][], b: number[][], matrixSize: number): number {
-      let sum = 0;
-      for (let i = 0; i < matrixSize; i++) {
-        sum += a[this.thread.y][i] * b[i][this.thread.x];
-      }
-      return sum;
-    }).setOutput([this.matrixSize.value, this.matrixSize.value]);
-
-    const product = multiplyMatrix(this.matrixA, this.matrixB, this.matrixSize.value);
-
-    const endTime = performance.now();
-    this.gpuTime = (endTime - startTime);
-    this.matrixResult$.next(product as Array<Array<number>>);
+    this.store.dispatch(gpuMultiplyMatrix());
   }
 
   clear(): void {
-    this.readonly = false;
-
-    this.matrixA = null;
-    this.matrixB = null;
-
-    this.matrixSize.setValue(null);
-    this.matrixA$.next(null);
-    this.matrixB$.next(null);
-    this.matrixResult$.next(null);
-
-    this.cpuTime = null;
-    this.gpuTime = null;
+    this.store.dispatch(resetMatrix());
   }
 }

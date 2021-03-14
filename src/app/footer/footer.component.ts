@@ -16,14 +16,18 @@ export class FooterComponent implements OnInit {
 
   scrollTop(): void {
     this.ngZone.runOutsideAngular(() => {
+      let onePercentSuccession = 19;
+
       const scrollToTop = window.setInterval(() => {
         const pos = window.pageYOffset;
         if (pos > 0) {
-          window.scrollTo(0, pos - 20);
+          window.scrollTo(0, pos - onePercentSuccession);
+
+          onePercentSuccession *= 1.01;
         } else {
           window.clearInterval(scrollToTop);
         }
-      }, 16);
+      }, 13);
     });
   }
 }

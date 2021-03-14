@@ -9,9 +9,10 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './ngrx/reducer/counter.reducer';
+import { counterReducer } from './ngrx/store/counter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { matrixReducer } from './gpu/store/matrix.reducer';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     FontAwesomeModule,
     StoreModule.forRoot({
-      count: counterReducer
+      count: counterReducer,
+      matrix: matrixReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 20
