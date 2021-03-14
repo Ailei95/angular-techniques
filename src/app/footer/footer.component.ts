@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,19 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ngZone: NgZone
+  ) { }
 
   ngOnInit(): void {
   }
 
   scrollTop(): void {
-    const scrollToTop = window.setInterval(() => {
-      const pos = window.pageYOffset;
-      if (pos > 0) {
-        window.scrollTo(0, pos - 20);
-      } else {
-        window.clearInterval(scrollToTop);
-      }
-    }, 16);
+    this.ngZone.runOutsideAngular(() => {
+      const scrollToTop = window.setInterval(() => {
+        const pos = window.pageYOffset;
+        if (pos > 0) {
+          window.scrollTo(0, pos - 20);
+        } else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 16);
+    });
   }
 }

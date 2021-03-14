@@ -29,6 +29,8 @@ export class GpuHomeComponent implements OnInit {
 
   constructor() {
     this.gpu = new GPU();
+
+    console.log(this.gpu);
   }
 
   ngOnInit(): void {
@@ -78,8 +80,8 @@ export class GpuHomeComponent implements OnInit {
 
   gpuMultiplyMatrix(): void {
     const startTime = performance.now();
-    const gpu = new GPU();
-    const multiplyMatrix = gpu.createKernel(function _(a: number[][], b: number[][], matrixSize: number): number {
+
+    const multiplyMatrix = this.gpu.createKernel(function(a: number[][], b: number[][], matrixSize: number): number {
       let sum = 0;
       for (let i = 0; i < matrixSize; i++) {
         sum += a[this.thread.y][i] * b[i][this.thread.x];

@@ -1,6 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActionCreator, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { increment, decrement, reset } from '../actions/counter.actions';
 
 @Component({
@@ -11,7 +11,6 @@ import { increment, decrement, reset } from '../actions/counter.actions';
 export class NgrxHomeComponent implements OnInit {
 
   count$: Observable<number>;
-  actions: { increment?: ActionCreator, decrement?: ActionCreator, reset?: ActionCreator };
 
   constructor(
     private store: Store<{ count: number }>
@@ -20,7 +19,6 @@ export class NgrxHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.actions = { increment, decrement };
   }
 
   increment(): void {

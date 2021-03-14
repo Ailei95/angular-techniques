@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, NgZone} from '@angular/core';
 
 declare var $: any;
 
@@ -9,17 +9,21 @@ declare var $: any;
 })
 export class AppComponent implements AfterViewInit{
 
-  constructor() {
+  constructor(
+    private ngZone: NgZone
+  ) {
   }
 
   ngAfterViewInit(): void {
-    $('.home-particles').particleground({
-      dotColor: '#ffffff',
-      lineColor: '#ffffff',
-      particleRadius: 8,
-      curveLines: true,
-      density: 10000,
-      proximity: 100,
+    this.ngZone.runOutsideAngular(() => {
+      $('.home-particles').particleground({
+        dotColor: '#ffffff',
+        lineColor: '#ffffff',
+        particleRadius: 8,
+        curveLines: true,
+        density: 10000,
+        proximity: 100,
+      });
     });
   }
 }

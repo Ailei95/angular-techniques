@@ -10,6 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './ngrx/reducer/counter.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,13 @@ import { counterReducer } from './ngrx/reducer/counter.reducer';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    StoreModule.forRoot({ count: counterReducer })
+    StoreModule.forRoot({
+      count: counterReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 20
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

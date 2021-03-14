@@ -11,7 +11,7 @@ import { NativeMobileModule } from '../native-mobile/native-mobile.module';
   imports: [
     CommonModule,
     NgrxRoutingModule,
-    NativeMobileModule
+    NativeMobileModule,
   ]
 })
 export class NgrxModule { }
