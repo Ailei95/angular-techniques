@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Album} from '../../models/album';
@@ -9,31 +9,40 @@ import {map} from 'rxjs/operators';
   templateUrl: './all-albums.component.html',
   styleUrls: ['./all-albums.component.css']
 })
-export class AllAlbumsComponent implements OnInit, AfterViewInit {
+export class AllAlbumsComponent implements OnInit {
+
+  @ViewChild('end') end: ElementRef;
 
   albums$: Observable<Album[]>;
-  length$: Observable<number>;
+
+  albumsLength: number;
+  albumsToShow: number;
 
   constructor(
+    private ngZone: NgZone,
     private jsonPlaceholderApiService: JsonPlaceholderApiService
   ) {
+    this.albumsLength = 10;
+    this.albumsToShow = 10;
   }
 
   ngOnInit(): void {
-    this.length$ = this.jsonPlaceholderApiService.getAlbums()
-      .pipe(map((albums: Album[]) => albums.length));
-  }
-
-  ngAfterViewInit(): void {
-    this.albums$ = this.jsonPlaceholderApiService.getAlbums()
-      .pipe(map((albums: Album[]) => albums.slice(0, 10)));
-  }
-
-  onPageChange(event): void {
     this.albums$ = this.jsonPlaceholderApiService.getAlbums()
       .pipe(map((albums: Album[]) => {
-          this.length$ = of(albums.length);
-          return albums.slice(event.pageIndex * event.pageSize, event.pageIndex * event.pageSize + event.pageSize);
-        }));
+        this.albumsLength = albums.length;
+        return albums;
+      }));
+
+    this.ngZone.runOutsideAngular(() => {
+      window.addEventListener('scroll', (e) => {
+        if ((window.innerHeight + window.scrollY) >= this.end.nativeElement.offsetTop) {
+          if (this.albumsToShow < this.albumsLength) {
+            this.ngZone.run(() => {
+              this.albumsToShow = Math.min(this.albumsToShow + 10, this.albumsLength);
+            });
+          }
+        }
+      });
+    });
   }
 }
