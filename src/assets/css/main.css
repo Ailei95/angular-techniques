@@ -427,6 +427,9 @@ img.pull-left {
  * 05. forms - (_forms.scss)
  *
  * ------------------------------------------------------------------- */
+
+/*
+
 fieldset {
 	border: none;
 }
@@ -499,6 +502,8 @@ label > input[type="radio"] {
 	top: .15rem;
 }
 
+*/
+
 /* -------------------------------------------------------------------
  * Style Placeholder Text
  * ------------------------------------------------------------------- */
@@ -522,6 +527,7 @@ label > input[type="radio"] {
  * 06. buttons - (_button-essentials.scss)
  *
  * ------------------------------------------------------------------- */
+
 .button,
 a.button,
 button,
@@ -556,13 +562,8 @@ a.button:hover,
 button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
-input[type="button"]:hover,
-.button:focus,
-button:focus,
-input[type="submit"]:focus,
-input[type="reset"]:focus,
-input[type="button"]:focus {
-	background: #057f78;
+input[type="button"]:hover {
+  background-color: #dddddd;
 }
 
 .button.button-primary,
@@ -637,6 +638,7 @@ input::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 }
+
 
 
 /* ===================================================================

@@ -1,0 +1,27 @@
+.card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+p {
+  margin-bottom: unset !important;
+  white-space: nowrap;
+  overflow: hidden;
+  ext-overflow: ellipsis;
+}
+
+.ripple-container {
+  cursor: pointer;
+  user-select: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}

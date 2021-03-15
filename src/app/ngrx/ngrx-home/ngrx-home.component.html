@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-twelve">
     <h1>Current Count: {{ count$ | async }}</h1>
-    <button appNativeMobileButtonLongPress (shortPress)="increment()" (longPress)="increment()">Increment</button>
-    <button appNativeMobileButtonLongPress (shortPress)="decrement()" (longPress)="decrement()">Decrement</button>
-    <button appNativeMobileButton (click)="reset()">Reset Counter</button>
+    <button mat-button appNativeMobileButtonLongPress (shortPress)="increment()" (longPress)="increment()">INCREMENT</button>
+    <button mat-button appNativeMobileButtonLongPress (shortPress)="decrement()" (longPress)="decrement()">DECREMENT</button>
+    <button mat-button appNativeMobileButton (click)="reset()">RESET COUNTER</button>
   </div>
 </div>

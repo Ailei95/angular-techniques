@@ -1,17 +1,18 @@
 <div class="row">
   <div class="col-twelve">
-    Hide matrices: <input type="checkbox" #ElementHide>
-    <input placeholder="Matrices dimension" type="number"
-            [ngModel]="matrixSize$ | async" #ElementMatrixSize>
-    <button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)">Generate matrices</button>
-    <button appNativeMobileButton (shortPress)="clear()">Clear</button>
+    <mat-checkbox class="float-right" [color]="'primary'" #ElementHide>Hide matrices</mat-checkbox>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-twelve">
-    <button appNativeMobileButton (shortPress)="cpuMultiplyMatrix()">Calculate result (CPU)</button>
-    <button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()">Calculate result (GPU)</button>
+  <div class="col-six">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Matrices dimension" type="number" autocomplete="off"
+             [ngModel]="matrixSize$ | async" #ElementMatrixSize>
+    </mat-form-field>
+    <button mat-button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)">GENERATE MATRICES</button>
+    <button mat-button appNativeMobileButton (shortPress)="clear()">CLEAR</button>
+  </div>
+  <div class="col-six">
+    <button mat-button appNativeMobileButton (shortPress)="cpuMultiplyMatrix()">CALCULATE RESULT (CPU)</button>
+    <button mat-button appNativeMobileButton (shortPress)="gpuMultiplyMatrix()">CALCULATE RESULT (GPU)</button>
   </div>
 </div>
 
@@ -26,8 +27,6 @@
     GPU Time: {{ gpuTime$ | async }} ms
   </div>
 </div>
-
-{{ changeDetection() }}
 
 <ng-container *ngIf="!ElementHide.checked">
   <div class="row">

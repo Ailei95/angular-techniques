@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'gpu',
     loadChildren: () => import('./gpu/gpu.module').then(m => m.GpuModule)
+  },
+  {
+    path: 'database',
+    loadChildren: () => import('./database/database.module').then(m => m.DatabaseModule)
   }
 ];
 

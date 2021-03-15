@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPrescription, faMicrochip } from '@fortawesome/free-solid-svg-icons';
+import { faPrescription, faMicrochip, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 interface UrlIcon {
@@ -26,6 +26,11 @@ export class MenuComponent implements OnInit {
     this.icons.push({
       icon: faMicrochip,
       url: '/gpu'
+    });
+
+    this.icons.push({
+      icon: faDatabase,
+      url: '/database'
     });
   }
 

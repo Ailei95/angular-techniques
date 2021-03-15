@@ -34,10 +34,6 @@ export class GpuHomeComponent implements OnInit, OnDestroy {
 
   }
 
-  changeDetection(): void {
-    console.log('change');
-  }
-
   generateMatrices(matrixSize: string): void {
     // tslint:disable-next-line:radix
     this.store.dispatch(generateMatrix({matrixSize: parseInt(matrixSize)}));

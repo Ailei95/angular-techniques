@@ -13,15 +13,14 @@
   cursor: pointer;
 }
 
-button, button:visited {
-  background-color: #ffffff;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+.float-right {
+  float: right;
 }
 
-button:hover, button:focus {
-  background-color: #057f78;
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.margin-top-bottom {
+  margin-top: 16px;
+  margin-bottom: 16px;
 }

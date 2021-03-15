@@ -1,0 +1,11 @@
+<mat-card matRipple class="card ripple-container">
+  <mat-card-header>
+    <mat-card-title><p>{{ album?.title }}</p></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-image [src]="(photo$ | async)?.url">
+  </mat-card-content>
+  <mat-card-footer>
+    <app-user-card [user]="user$ | async"></app-user-card>
+  </mat-card-footer>
+</mat-card>

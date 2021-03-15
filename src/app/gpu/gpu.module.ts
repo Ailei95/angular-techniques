@@ -7,6 +7,7 @@ import { NativeMobileModule } from '../native-mobile/native-mobile.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {matrixReducer} from './store/matrix.reducer';
+import {MaterialModule} from '../material/material.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {matrixReducer} from './store/matrix.reducer';
   ],
   imports: [
     CommonModule,
+    MaterialModule,
     GpuRoutingModule,
     NativeMobileModule,
     ReactiveFormsModule,
