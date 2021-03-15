@@ -2,8 +2,9 @@
   <mat-card-header>
     <mat-card-title><p>{{ album?.title }}</p></mat-card-title>
   </mat-card-header>
+  <img mat-card-image [src]="(photo$ | async)?.url" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <img mat-card-image [src]="(photo$ | async)?.url">
+
   </mat-card-content>
   <mat-card-footer>
     <app-user-card [user]="user$ | async"></app-user-card>
