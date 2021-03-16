@@ -33,19 +33,11 @@ export class AllAlbumsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(
       (queryParams) => {
-        if (queryParams.userId) {
-          this.albums$ = this.jsonPlaceholderApiService.getAlbumsByUserId(queryParams.userId)
-            .pipe(map((albums: Album[]) => {
-              this.albumsLength = albums.length;
-              return albums;
-            }));
-        } else {
-          this.albums$ = this.jsonPlaceholderApiService.getAlbums()
-            .pipe(map((albums: Album[]) => {
-              this.albumsLength = albums.length;
-              return albums;
-            }));
-        }
+        this.albums$ = this.jsonPlaceholderApiService.getAlbums(queryParams)
+          .pipe(map((albums: Album[]) => {
+            this.albumsLength = albums.length;
+            return albums;
+          }));
       });
 
     this.ngZone.runOutsideAngular(() => {

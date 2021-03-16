@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Post} from '../../models/post';
 import {map} from 'rxjs/operators';
-import {Album} from '../../models/album';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -34,19 +33,11 @@ export class AllPostsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(
       (queryParams) => {
-        if (queryParams.userId) {
-          this.posts$ = this.jsonPlaceholderApiService.getPostsByUserId(queryParams.userId)
-            .pipe(map((posts: Post[]) => {
-              this.postLength = posts.length;
-              return posts;
-            }));
-        } else {
-          this.posts$ = this.jsonPlaceholderApiService.getPosts()
-            .pipe(map((posts: Post[]) => {
-              this.postLength = posts.length;
-              return posts;
-            }));
-        }
+        this.posts$ = this.jsonPlaceholderApiService.getPosts(queryParams)
+          .pipe(map((posts: Post[]) => {
+            this.postLength = posts.length;
+            return posts;
+          }));
       });
 
     this.ngZone.runOutsideAngular(() => {

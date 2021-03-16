@@ -11,7 +11,6 @@ import {Post} from '../models/post';
 
 import {DatabaseModule} from '../database.module';
 
-
 @Injectable({
   providedIn: DatabaseModule
 })
@@ -20,56 +19,42 @@ export class JsonPlaceholderApiService {
   constructor(
     private http: HttpClient
   ) {
-
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/users')
+  getUsers(queryParams: object = null): Observable<User[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/users' + this.appendParams(queryParams))
       .pipe(map((users: User[]) => users), shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get('https://jsonplaceholder.typicode.com/users?id=' + id)
-      .pipe(map((user: User[]) => user[0]), shareReplay({ bufferSize: 10, refCount: true }));
-  }
-
-  getAlbums(): Observable<Album[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/albums')
+  getAlbums(queryParams: object = null): Observable<Album[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/albums' + this.appendParams(queryParams))
       .pipe(map((albums: Album[]) => albums), shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getAlbumsByUserId(userId: number): Observable<Album[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/albums?userId=' + userId)
-      .pipe(map((albums: Album[]) => albums), shareReplay({ bufferSize: 10, refCount: true }));
-  }
-
-  getPhotos(): Observable<Photo[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/photos')
+  getPhotos(queryParams: object = null): Observable<Photo[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/photos' + this.appendParams(queryParams))
       .pipe(map((photos: Photo[]) => photos), shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getPhotosByAlbumId(albumId: number): Observable<Photo[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/photos?albumId=' + albumId)
-      .pipe(map((photos: Photo[]) => photos));
-  }
-
-  getPosts(): Observable<Post[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts')
+  getPosts(queryParams: object = null): Observable<Post[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts' + this.appendParams(queryParams))
       .pipe(map((posts: Post[]) => posts), shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getPostsByUserId(userId: number): Observable<Post[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts?userId=' + userId)
-      .pipe(map((posts: Post[]) => posts), shareReplay({ bufferSize: 10, refCount: true }));
-  }
-
-  getComments(): Observable<Comment[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/comments')
+  getComments(queryParams: object = null): Observable<Comment[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/comments' + this.appendParams(queryParams))
       .pipe(map((comments: Comment[]) => comments), shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get('https://jsonplaceholder.typicode.com/todos')
+  getTodos(queryParams: object = null): Observable<Todo[]> {
+    return this.http.get('https://jsonplaceholder.typicode.com/todos' + this.appendParams(queryParams))
       .pipe(map((todos: Todo[]) => todos), shareReplay({ bufferSize: 10, refCount: true }));
+  }
+
+  private appendParams(params: object): string {
+    let queryParams = '';
+    // tslint:disable-next-line:forin
+    for (const key in params) { queryParams += '&' + key + '=' + params[key]; }
+    return queryParams.replace('&', '?');
   }
 }

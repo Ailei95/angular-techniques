@@ -3,6 +3,7 @@ import {Post} from '../../models/post';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-card',
@@ -17,11 +18,12 @@ export class PostCardComponent implements OnInit {
   user$: Observable<User>;
 
   constructor(
-    private jsonPlacehoderApiService: JsonPlaceholderApiService
+    private jsonPlaceholderApiService: JsonPlaceholderApiService
   ) { }
 
   ngOnInit(): void {
-    this.user$ = this.jsonPlacehoderApiService.getUserById(this.post.userId);
+    this.user$ = this.jsonPlaceholderApiService.getUsers({id: this.post.userId})
+      .pipe(map((users: User[]) => users[0]));
   }
 
 }
