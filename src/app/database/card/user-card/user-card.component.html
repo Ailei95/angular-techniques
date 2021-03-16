@@ -1,6 +1,6 @@
 <mat-card matRipple class="card ripple-container">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar class="header-image"></div>
     <mat-card-title><p>{{ user?.username }}</p></mat-card-title>
     <mat-card-subtitle>
       <p><a [href]="'mailto:' + user?.email">{{ user?.email }}</a></p>
@@ -12,8 +12,7 @@
     <p>Company name: {{ user?.company.name }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="$event.stopImmediatePropagation()">LIKE</button>
-    <button mat-button>SHARE</button>
+    <button class="float-right" mat-button>SHARE</button>
   </mat-card-actions>
   <mat-card-footer>
 

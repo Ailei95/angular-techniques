@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {User} from '../../models/user';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {map} from 'rxjs/operators';
-import {Album} from '../../models/album';
 
 @Component({
   selector: 'app-all-users',
   templateUrl: './all-users.component.html',
-  styleUrls: ['./all-users.component.css']
+  styleUrls: ['./all-users.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AllUsersComponent implements OnInit, AfterViewInit {
 

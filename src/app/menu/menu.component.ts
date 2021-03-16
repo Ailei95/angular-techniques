@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { faPrescription, faMicrochip, faDatabase } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
@@ -10,7 +10,8 @@ interface UrlIcon {
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent implements OnInit {
 
