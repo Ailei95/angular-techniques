@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Album} from '../../models/album';
 import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-all-albums',
@@ -22,18 +23,30 @@ export class AllAlbumsComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngZone: NgZone,
-    private jsonPlaceholderApiService: JsonPlaceholderApiService
+    private jsonPlaceholderApiService: JsonPlaceholderApiService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.albumsLength = 10;
     this.albumsToShow = 10;
   }
 
   ngOnInit(): void {
-    this.albums$ = this.jsonPlaceholderApiService.getAlbums()
-      .pipe(map((albums: Album[]) => {
-        this.albumsLength = albums.length;
-        return albums;
-      }));
+    this.activatedRoute.queryParams.subscribe(
+      (queryParams) => {
+        if (queryParams.userId) {
+          this.albums$ = this.jsonPlaceholderApiService.getAlbumsByUserId(queryParams.userId)
+            .pipe(map((albums: Album[]) => {
+              this.albumsLength = albums.length;
+              return albums;
+            }));
+        } else {
+          this.albums$ = this.jsonPlaceholderApiService.getAlbums()
+            .pipe(map((albums: Album[]) => {
+              this.albumsLength = albums.length;
+              return albums;
+            }));
+        }
+      });
 
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('scroll', this.callback = () => {

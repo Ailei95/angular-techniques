@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Post} from '../../models/post';
 import {map} from 'rxjs/operators';
+import {Album} from '../../models/album';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-all-posts',
@@ -23,17 +25,29 @@ export class AllPostsComponent implements OnInit, OnDestroy {
   constructor(
     private ngZone: NgZone,
     private jsonPlaceholderApiService: JsonPlaceholderApiService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.postLength = 10;
     this.postsToShow = 10;
   }
 
   ngOnInit(): void {
-    this.posts$ = this.jsonPlaceholderApiService.getPosts()
-      .pipe(map((posts: Post[]) => {
-        this.postLength = posts.length;
-        return posts;
-      }));
+    this.activatedRoute.queryParams.subscribe(
+      (queryParams) => {
+        if (queryParams.userId) {
+          this.posts$ = this.jsonPlaceholderApiService.getPostsByUserId(queryParams.userId)
+            .pipe(map((posts: Post[]) => {
+              this.postLength = posts.length;
+              return posts;
+            }));
+        } else {
+          this.posts$ = this.jsonPlaceholderApiService.getPosts()
+            .pipe(map((posts: Post[]) => {
+              this.postLength = posts.length;
+              return posts;
+            }));
+        }
+      });
 
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('scroll', this.callback = () => {
