@@ -1,5 +1,7 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
 
+declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -41,7 +43,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    this.ngZone.runOutsideAngular(() => {
+      $('.home-particles').particleground({
+        dotColor: '#ffffff',
+        lineColor: '#ffffff',
+        particleRadius: 8,
+        curveLines: true,
+        density: 10000,
+        proximity: 100,
+      });
+    });
   }
 
   ngAfterViewInit(): void {

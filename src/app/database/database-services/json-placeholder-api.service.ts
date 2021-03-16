@@ -9,9 +9,11 @@ import {Album} from '../models/album';
 import {Photo} from '../models/photo';
 import {Post} from '../models/post';
 
+import {DatabaseModule} from '../database.module';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: DatabaseModule
 })
 export class JsonPlaceholderApiService {
 

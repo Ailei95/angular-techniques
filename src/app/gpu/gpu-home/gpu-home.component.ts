@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
 import { generateMatrix, resetMatrix, cpuMultiplyMatrix, gpuMultiplyMatrix } from '../store/matrix.actions';
-import {getMatrixState, getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
+import {getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
 
 @Component({
   selector: 'app-gpu-home',
