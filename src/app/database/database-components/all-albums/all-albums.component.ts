@@ -1,5 +1,5 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Album} from '../../models/album';
 import {map} from 'rxjs/operators';
@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './all-albums.component.html',
   styleUrls: ['./all-albums.component.css']
 })
-export class AllAlbumsComponent implements OnInit {
+export class AllAlbumsComponent implements OnInit, OnDestroy {
 
   @ViewChild('end') end: ElementRef;
 
@@ -17,6 +17,8 @@ export class AllAlbumsComponent implements OnInit {
 
   albumsLength: number;
   albumsToShow: number;
+
+  callback: () => void;
 
   constructor(
     private ngZone: NgZone,
@@ -34,7 +36,7 @@ export class AllAlbumsComponent implements OnInit {
       }));
 
     this.ngZone.runOutsideAngular(() => {
-      window.addEventListener('scroll', (e) => {
+      window.addEventListener('scroll', this.callback = () => {
         if ((window.innerHeight + window.scrollY) >= this.end.nativeElement.offsetTop) {
           if (this.albumsToShow < this.albumsLength) {
             this.ngZone.run(() => {
@@ -42,7 +44,11 @@ export class AllAlbumsComponent implements OnInit {
             });
           }
         }
-      });
+      }, false);
     });
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.callback, false);
   }
 }

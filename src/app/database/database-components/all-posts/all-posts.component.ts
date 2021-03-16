@@ -1,4 +1,4 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Post} from '../../models/post';
@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './all-posts.component.html',
   styleUrls: ['./all-posts.component.css']
 })
-export class AllPostsComponent implements OnInit {
+export class AllPostsComponent implements OnInit, OnDestroy {
 
   @ViewChild('end') end: ElementRef;
 
@@ -17,6 +17,8 @@ export class AllPostsComponent implements OnInit {
 
   postLength: number;
   postsToShow: number;
+
+  callback: () => void;
 
   constructor(
     private ngZone: NgZone,
@@ -34,7 +36,7 @@ export class AllPostsComponent implements OnInit {
       }));
 
     this.ngZone.runOutsideAngular(() => {
-      window.addEventListener('scroll', (e) => {
+      window.addEventListener('scroll', this.callback = () => {
         if ((window.innerHeight + window.scrollY) >= this.end.nativeElement.offsetTop) {
           if (this.postsToShow < this.postLength) {
             this.ngZone.run(() => {
@@ -42,7 +44,11 @@ export class AllPostsComponent implements OnInit {
             });
           }
         }
-      });
+      }, false);
     });
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.callback, false);
   }
 }
