@@ -27,7 +27,7 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.users$ = this.jsonPlaceholderApiService.getUsers()
-      .pipe(map((users: User[]) => users.slice(0, 5)));
+      .pipe(map((users: User[]) => users.slice(0, 10)));
   }
 
   onPageChange(event): void {
