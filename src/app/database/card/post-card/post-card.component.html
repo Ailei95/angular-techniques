@@ -6,7 +6,9 @@
     <div>{{ post.body }}</div>
   </mat-card-content>
   <mat-card-footer>
-    <app-user-card [user]="user$ | async"></app-user-card>
+    <app-user-card [user]="user$ | async">
+      <button class="float-right" mat-button>SHARE</button>
+    </app-user-card>
   </mat-card-footer>
 </mat-card>
 

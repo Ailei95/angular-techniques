@@ -7,7 +7,7 @@ import {Component, ElementRef, Input, NgZone, OnInit, Output, ViewChild, EventEm
 })
 export class InfinityScrollComponent implements OnInit, OnDestroy {
 
-  @Input() stopEmit: boolean;
+  @Input() stopEmit = true;
   @Output() bottomReached = new EventEmitter();
 
   @ViewChild('end') end: ElementRef;
