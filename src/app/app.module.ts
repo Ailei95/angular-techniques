@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    HttpClientModule,
     NgxSkeletonLoaderModule.forRoot(),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({

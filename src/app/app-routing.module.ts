@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'database',
     loadChildren: () => import('./database/database.module').then(m => m.DatabaseModule)
+  },
+  {
+    path: 'proxy',
+    loadChildren: () => import('./proxy/proxy.module').then(m => m.ProxyModule)
   }
 ];
 
