@@ -8,6 +8,7 @@ import {PhotoCardComponent} from './photo-card/photo-card.component';
 import {AlbumCardComponent} from './album-card/album-card.component';
 import {CommentCardComponent} from './comment-card/comment-card.component';
 import {PostCardComponent} from './post-card/post-card.component';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PostCardComponent} from './post-card/post-card.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    NgxSkeletonLoaderModule
   ],
   exports: [
     UserCardComponent,

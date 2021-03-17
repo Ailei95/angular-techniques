@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -24,14 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FontAwesomeModule,
-
+    NgxSkeletonLoaderModule.forRoot(),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 20
     }),
-    EffectsModule.forRoot([]),
-    BrowserAnimationsModule
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

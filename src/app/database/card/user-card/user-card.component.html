@@ -1,7 +1,9 @@
-<mat-card matRipple class="card ripple-container">
-  <mat-card-header>
+<mat-card matRipple class="card ripple-container" *ngIf="user?.username; else loading">
+  <mat-card-header class="header-title">
     <div mat-card-avatar class="header-image"></div>
-    <mat-card-title><p>{{ user?.username }}</p></mat-card-title>
+    <mat-card-title>
+      <p>{{ user?.username }}</p>
+    </mat-card-title>
     <mat-card-subtitle>
       <p><a [href]="'mailto:' + user?.email">{{ user?.email }}</a></p>
     </mat-card-subtitle>
@@ -15,6 +17,32 @@
     <button class="float-right" mat-button>SHARE</button>
   </mat-card-actions>
   <mat-card-footer>
-
   </mat-card-footer>
 </mat-card>
+
+<ng-template #loading>
+  <mat-card matRipple class="card ripple-container">
+    <mat-card-header class="loading-card">
+      <div mat-card-avatar>
+        <ngx-skeleton-loader appearance="circle"
+          [theme]="{ width: '40px', height: '40px'}"></ngx-skeleton-loader>
+      </div>
+      <mat-card-title style="width: available">
+        <ngx-skeleton-loader
+          [theme]="{ width: '90%', 'margin-bottom': 0, 'margin-left': '16px', height: '22px' }"></ngx-skeleton-loader>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <ngx-skeleton-loader
+          [theme]="{ width: '75%', 'margin-bottom': 0, 'margin-left': '16px', height: '20px' }"></ngx-skeleton-loader>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-skeleton-loader count="3"
+        [theme]="{ width: 'available', 'margin-bottom': '5px', height: '20px' }"></ngx-skeleton-loader>
+    </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</ng-template>

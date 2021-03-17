@@ -7,6 +7,53 @@
   background-size: cover;
 }
 
+:host ::ng-deep .loading-card .mat-card-header-text {
+  width: 100% !important;
+  margin: unset;
+}
+
+.img-container {
+  width: calc(100% + 32px);
+  margin: 0 -16px 16px -16px;
+  position: relative;
+}
+
+.img-container:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.img-container:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid gainsboro;
+  border-color: transparent gainsboro transparent gainsboro;
+  border-radius: 50%;
+  animation: loader 1s linear infinite;
+}
+.img-container > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+@keyframes loader {
+  0% {
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%,-50%) rotate(360deg);
+  }
+}
+
 p {
   margin-bottom: unset !important;
   white-space: nowrap;

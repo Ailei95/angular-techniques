@@ -19,9 +19,12 @@ export class AlbumCardComponent implements OnInit {
   photo$: Observable<Photo>;
   user$: Observable<User>;
 
+  loaded: boolean;
+
   constructor(
     private jsonPlaceholderApiService: JsonPlaceholderApiService
   ) {
+    this.loaded = false;
   }
 
   ngOnInit(): void {
@@ -31,5 +34,4 @@ export class AlbumCardComponent implements OnInit {
     this.user$ = this.jsonPlaceholderApiService.getUsers({id: this.album.userId})
       .pipe(map((users: User[]) => users[0]));
   }
-
 }
