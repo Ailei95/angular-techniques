@@ -1,4 +1,4 @@
-import {Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
 import {Post} from '../../models/post';
@@ -8,21 +8,17 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-all-posts',
   templateUrl: './all-posts.component.html',
-  styleUrls: ['./all-posts.component.css']
+  styleUrls: ['./all-posts.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AllPostsComponent implements OnInit, OnDestroy {
-
-  @ViewChild('end') end: ElementRef;
+export class AllPostsComponent implements OnInit {
 
   posts$: Observable<Post[]>;
 
   postLength: number;
   postsToShow: number;
 
-  callback: () => void;
-
   constructor(
-    private ngZone: NgZone,
     private jsonPlaceholderApiService: JsonPlaceholderApiService,
     private activatedRoute: ActivatedRoute,
   ) {
@@ -39,21 +35,9 @@ export class AllPostsComponent implements OnInit, OnDestroy {
             return posts;
           }));
       });
-
-    this.ngZone.runOutsideAngular(() => {
-      window.addEventListener('scroll', this.callback = () => {
-        if ((window.innerHeight + window.scrollY) >= this.end.nativeElement.offsetTop) {
-          if (this.postsToShow < this.postLength) {
-            this.ngZone.run(() => {
-              this.postsToShow = Math.min(this.postsToShow + 10, this.postLength);
-            });
-          }
-        }
-      }, false);
-    });
   }
 
-  ngOnDestroy(): void {
-    window.removeEventListener('scroll', this.callback, false);
+  bottomReached(): void {
+    this.postsToShow = Math.min(this.postsToShow + 10, this.postLength);
   }
 }

@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AllPostsRoutingModule } from './all-posts-routing.module';
 import { AllPostsComponent } from './all-posts.component';
 import {CardModule} from '../../card/card.module';
-import {MaterialModule} from '../../../material/material.module';
+import {MaterialModule} from '../../../shared/material/material.module';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MaterialModule} from '../../../material/material.module';
     CommonModule,
     AllPostsRoutingModule,
     CardModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class AllPostsModule { }
