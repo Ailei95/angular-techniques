@@ -2,5 +2,6 @@
   <div class="col-four margin-top-bottom" *ngFor="let album of albums$ | async | slice:0:albumsToShow">
     <app-album-card [album]="album"></app-album-card>
   </div>
+  <div class="col-four" #end></div>
 </div>
-<div #end></div>
+
