@@ -34,7 +34,9 @@
               "src/assets/js/modernizr.js",
               "src/assets/js/jquery-2.1.3.min.js",
               "src/assets/js/plugins.js",
-              "src/assets/js/main.js"
+              "src/assets/js/main.js",
+              "src/assets/js/sockjs.min.js",
+              "src/assets/js/stomp.min.js"
             ]
           },
           "configurations": {

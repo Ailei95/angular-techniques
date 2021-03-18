@@ -3,3 +3,20 @@
     {{ (hello$ | async) | json }}
   </div>
 </div>
+
+<div class="row">
+  <div class="col-twelve margin-top-bottom">
+    <mat-form-field>
+      <input matInput type="text" placeholder="message" [(ngModel)]="msg"
+             autocomplete="off" #msgRef>
+    </mat-form-field>
+    <button appNativeMobileButton mat-button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-twelve margin-top-bottom">
+    <p *ngFor="let message of webSocketMsgService.msg">{{ message }}</p>
+  </div>
+</div>
+
