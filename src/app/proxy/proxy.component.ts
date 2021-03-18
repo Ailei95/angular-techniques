@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProxyApiService} from './proxy-services/proxy-api.service';
 import {Observable} from 'rxjs';
 import {WebSocketMsgService} from './proxy-services/web-socket-msg.service';
@@ -8,11 +8,13 @@ import {WebSocketMsgService} from './proxy-services/web-socket-msg.service';
   templateUrl: './proxy.component.html',
   styleUrls: ['./proxy.component.css']
 })
-export class ProxyComponent implements OnInit {
+export class ProxyComponent implements OnInit, AfterViewChecked {
 
   hello$: Observable<JSON>;
 
   @ViewChild('msgRef') msgRef: ElementRef;
+  @ViewChild('content') content: ElementRef;
+
   msg: string;
 
   constructor(
@@ -29,5 +31,9 @@ export class ProxyComponent implements OnInit {
       this.webSocketMsgService.sendMessage(this.msgRef.nativeElement.value);
       this.msgRef.nativeElement.value = '';
     }
+  }
+
+  ngAfterViewChecked(): void {
+    this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
   }
 }

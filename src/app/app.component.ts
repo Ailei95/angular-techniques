@@ -9,4 +9,8 @@ export class AppComponent {
 
   constructor() {
   }
+
+  changeDetection(): void {
+    console.log('change');
+  }
 }

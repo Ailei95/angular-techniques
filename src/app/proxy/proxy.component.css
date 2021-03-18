@@ -1,0 +1,24 @@
+.card {
+  max-width: 550px;
+}
+
+.card-container {
+  padding: 10px;
+}
+
+.card-content {
+  height: 25em;
+  max-height: 25em;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: solid 1px #eeeeee;
+}
+
+.card-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card-content::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #e1e1e1;
+}

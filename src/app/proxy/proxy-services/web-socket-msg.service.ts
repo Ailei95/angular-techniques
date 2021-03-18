@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 declare var SockJS;
 declare var Stomp;
@@ -16,18 +17,20 @@ export class WebSocketMsgService {
   }
 
   initializeWebSocketConnection(): void {
-    const serverUrl = 'http://localhost:8080/socket';
+    const serverUrl = environment.url + 'socket';
     const ws = new SockJS(serverUrl);
 
-    console.log(ws);
-
     this.stompClient = Stomp.over(ws);
-    const that = this;
-    // tslint:disable-next-line:only-arrow-functions
-    this.stompClient.connect({}, (frame) => {
-      that.stompClient.subscribe('/message', (message) => {
+
+    this.stompClient.connect({
+      session: 'guest',
+      heartbeatIncoming: 0,
+      heartbeatOutgoing: 20000,
+      reconnectDelay: 500
+    }, () => {
+      this.stompClient.subscribe('/message', (message) => {
         if (message.body) {
-          that.msg.push(message.body);
+          this.msg.push(message.body);
         }
       });
     });
