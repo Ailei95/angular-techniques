@@ -1,6 +1,6 @@
-import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProxyApiService} from './proxy-services/proxy-api.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 // import {WebSocketMsgService} from './proxy-services/web-socket-msg.service';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
@@ -10,7 +10,7 @@ import { Message } from '@stomp/stompjs';
   templateUrl: './proxy.component.html',
   styleUrls: ['./proxy.component.css']
 })
-export class ProxyComponent implements OnInit, AfterViewChecked {
+export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   hello$: Observable<JSON>;
 
@@ -19,6 +19,8 @@ export class ProxyComponent implements OnInit, AfterViewChecked {
 
   msg: string;
   receivedMessages: string[] = [];
+
+  sub: Subscription;
 
   constructor(
     private proxyApiService: ProxyApiService,
@@ -29,7 +31,7 @@ export class ProxyComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.hello$ = this.proxyApiService.getHello();
 
-    this.rxStompService.watch('api/message').subscribe((message: Message) => {
+    this.sub = this.rxStompService.watch('api/message').subscribe((message: Message) => {
       this.receivedMessages.push(message.body);
     });
   }
@@ -47,5 +49,9 @@ export class ProxyComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
 
-  url: '/'
+  url: '/',
+  ws: 'ws://localhost:8080/'
 };
