@@ -9,7 +9,7 @@
       <mat-card-content>
         <div class="row card-container">
           <div class="col-twelve card-content" #content>
-            <pre *ngFor="let message of webSocketMsgService.msg">
+            <pre *ngFor="let message of receivedMessages">
               {{ message }}
             </pre>
           </div>

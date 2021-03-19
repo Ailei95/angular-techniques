@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {HttpClientModule} from '@angular/common/http';
+import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
+import {rxStompConfig} from './socket/socket.conf';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,17 @@ import {HttpClientModule} from '@angular/common/http';
     }),
     EffectsModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: rxStompConfig,
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

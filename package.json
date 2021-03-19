@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start proxy": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +27,7 @@
     "@ngrx/effects": "^11.0.1",
     "@ngrx/store": "^11.0.1",
     "@ngrx/store-devtools": "^11.0.1",
+    "@stomp/ng2-stompjs": "^8.0.0",
     "gpu.js": "^2.11.2",
     "ngx-skeleton-loader": "^2.9.1",
     "rxjs": "~6.6.0",
