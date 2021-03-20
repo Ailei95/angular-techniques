@@ -32,7 +32,11 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.hello$ = this.proxyApiService.getHello();
 
     this.sub = this.rxStompService.watch('api/message').subscribe((message: Message) => {
-      this.receivedMessages.push(message.body);
+      this.receivedMessages.push(JSON.stringify(
+        {
+          ...JSON.parse(message.body),
+          'message-id': message.headers['message-id']
+        }));
     });
   }
 
@@ -41,7 +45,10 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
       // this.webSocketMsgService.sendMessage(this.msgRef.nativeElement.value);
       this.rxStompService.publish({
         destination: 'api/send/message',
-        body: JSON.stringify({message: this.msgRef.nativeElement.value})
+        body: JSON.stringify({
+          message: this.msgRef.nativeElement.value,
+          timestamp: new Date().getTime()
+        })
       });
       this.msgRef.nativeElement.value = '';
     }

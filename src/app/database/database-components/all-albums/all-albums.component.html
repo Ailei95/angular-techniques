@@ -1,5 +1,5 @@
 <app-infinity-scroll [stopEmit]="albumsToShow >= albumsLength" (bottomReached)="bottomReached()">
-  <div class="col-four margin-top-bottom" *ngFor="let album of albums$ | async | slice:0:albumsToShow">
+  <div class="col-four margin-top-bottom" *ngFor="let album of albums$ | async | slice:0:albumsToShow; trackBy: trackById">
     <app-album-card [album]="album"></app-album-card>
   </div>
 </app-infinity-scroll>

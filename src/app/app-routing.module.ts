@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'proxy',
     loadChildren: () => import('./proxy/proxy.module').then(m => m.ProxyModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
   }
 ];
 

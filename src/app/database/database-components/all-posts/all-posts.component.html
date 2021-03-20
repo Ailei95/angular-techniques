@@ -1,5 +1,5 @@
 <app-infinity-scroll [stopEmit]="postsToShow >= postLength" (bottomReached)="bottomReached()">
-  <div class="col-four margin-top-bottom" *ngFor="let post of posts$ | async | slice:0:postsToShow">
+  <div class="col-four margin-top-bottom" *ngFor="let post of posts$ | async | slice:0:postsToShow; trackBy: trackById">
     <app-post-card [post]="post"></app-post-card>
   </div>
 </app-infinity-scroll>

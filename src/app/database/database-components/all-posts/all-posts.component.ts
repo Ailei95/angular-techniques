@@ -4,6 +4,7 @@ import {JsonPlaceholderApiService} from '../../database-services/json-placeholde
 import {Post} from '../../models/post';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
+import {Album} from '../../models/album';
 
 @Component({
   selector: 'app-all-posts',
@@ -17,6 +18,8 @@ export class AllPostsComponent implements OnInit {
 
   postLength: number;
   postsToShow: number;
+
+  trackById = (index: number, obj: Album): number => obj.id;
 
   constructor(
     private jsonPlaceholderApiService: JsonPlaceholderApiService,
