@@ -19,7 +19,7 @@ import {JsonPlaceholderApiInterceptorService} from './database-services/json-pla
     CommonModule,
     MaterialModule,
     DatabaseRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     {

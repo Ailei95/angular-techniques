@@ -4,6 +4,7 @@ import {select, Store} from '@ngrx/store';
 
 import { generateMatrix, resetMatrix, cpuMultiplyMatrix, gpuMultiplyMatrix } from '../store/matrix.actions';
 import {getCpuTime, getGpuTime, getMatrixA, getMatrixB, getMatrixResult, getMatrixSize} from '../store/matrix.selectors';
+import {MatrixState} from '../store/matrix.reducer';
 
 @Component({
   selector: 'app-gpu-home',
@@ -20,7 +21,7 @@ export class GpuHomeComponent implements OnInit, OnDestroy {
   matrixResult$: Observable<Array<Array<number>>>;
 
   constructor(
-    private store: Store<{ matrix: Array<Array<number>> }>
+    private store: Store<{ matrix: MatrixState }>
   ) {
     this.cpuTime$ = this.store.pipe(select(getCpuTime));
     this.gpuTime$ = this.store.pipe(select(getGpuTime));

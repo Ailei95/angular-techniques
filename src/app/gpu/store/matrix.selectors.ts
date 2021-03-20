@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {MatrixState} from '../store/matrix.reducer';
+import {MatrixState} from './matrix.reducer';
 
 export const getMatrixState = createFeatureSelector<MatrixState>('matrix');
 

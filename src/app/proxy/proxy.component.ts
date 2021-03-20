@@ -60,5 +60,6 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    this.rxStompService.deactivate().then(() => null);
   }
 }

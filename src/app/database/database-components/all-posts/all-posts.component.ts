@@ -19,7 +19,7 @@ export class AllPostsComponent implements OnInit {
   postLength: number;
   postsToShow: number;
 
-  trackById = (index: number, obj: Album): number => obj.id;
+  trackByIndex = (index: number): number => index;
 
   constructor(
     private jsonPlaceholderApiService: JsonPlaceholderApiService,

@@ -10,6 +10,7 @@ import {Photo} from '../models/photo';
 import {Post} from '../models/post';
 
 import {DatabaseModule} from '../database.module';
+import {Params} from '@angular/router';
 
 @Injectable({
   providedIn: DatabaseModule
@@ -21,37 +22,37 @@ export class JsonPlaceholderApiService {
   ) {
   }
 
-  getUsers(queryParams: object = null): Observable<User[]> {
+  getUsers(queryParams: Params = null): Observable<User[]> {
     return this.http.get<User[]>('https://jsonplaceholder.typicode.com/users' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getAlbums(queryParams: object = null): Observable<Album[]> {
+  getAlbums(queryParams: Params = null): Observable<Album[]> {
     return this.http.get<Album[]>('https://jsonplaceholder.typicode.com/albums' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getPhotos(queryParams: object = null): Observable<Photo[]> {
+  getPhotos(queryParams: Params = null): Observable<Photo[]> {
     return this.http.get<Photo[]>('https://jsonplaceholder.typicode.com/photos' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getPosts(queryParams: object = null): Observable<Post[]> {
+  getPosts(queryParams: Params = null): Observable<Post[]> {
     return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getComments(queryParams: object = null): Observable<Comment[]> {
+  getComments(queryParams: Params = null): Observable<Comment[]> {
     return this.http.get<Comment[]>('https://jsonplaceholder.typicode.com/comments' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  getTodos(queryParams: object = null): Observable<Todo[]> {
+  getTodos(queryParams: Params = null): Observable<Todo[]> {
     return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos' + this.appendParams(queryParams))
       .pipe(shareReplay({ bufferSize: 10, refCount: true }));
   }
 
-  private appendParams(params: object): string {
+  private appendParams(params: Params): string {
     let queryParams = '';
     // tslint:disable-next-line:forin
     for (const key in params) { queryParams += '&' + key + '=' + params[key]; }

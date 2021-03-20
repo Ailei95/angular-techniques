@@ -18,11 +18,11 @@ export class AllAlbumsComponent implements OnInit {
   albumsLength: number;
   albumsToShow: number;
 
-  trackById = (index: number, obj: Album): number => obj.id;
+  trackByIndex = (index: number): number => index;
 
   constructor(
     private jsonPlaceholderApiService: JsonPlaceholderApiService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
     this.albumsLength = 10;
     this.albumsToShow = 10;
