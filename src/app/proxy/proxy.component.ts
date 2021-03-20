@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProxyApiService} from './proxy-services/proxy-api.service';
 import {Observable, Subscription} from 'rxjs';
-// import {WebSocketMsgService} from './proxy-services/web-socket-msg.service';
+// import {WebSocketMsgService} from '../socket/web-socket-msg.service';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 
