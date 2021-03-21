@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   url: '/',
-  ws: 'ws://localhost:8080/'
+  ws: 'ws://localhost:8080'
 };
 
 /*

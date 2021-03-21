@@ -9,35 +9,30 @@ declare var Stomp;
   providedIn: 'root'
 })
 export class WebSocketMsgService {
-  // Deprecate
+  // ****************************** Deprecate *********************************** //
   public stompClient;
   public msg = [];
+
+  public sessionId;
+  public username;
 
   constructor() {
     this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection(): void {
-    const serverUrl = environment.url + 'api/socket';
-    const ws = new SockJS(serverUrl);
+    const ws = new SockJS(environment.url + 'api/socket');
 
     this.stompClient = Stomp.over(ws);
 
-    this.stompClient.connect({
-      session: 'guest',
-      heartbeatIncoming: 0,
-      heartbeatOutgoing: 20000,
-      reconnectDelay: 500
-    }, () => {
-      this.stompClient.subscribe('api/message', (message) => {
-        if (message.body) {
-          this.msg.push(message.body);
-        }
+    this.stompClient.connect({}, (frame) => {
+      this.stompClient.subscribe('/user/queue/reply', (message) => {
+        console.log(message);
       });
     });
   }
 
   sendMessage(message): void {
-    this.stompClient.send('api/send/message' , {}, JSON.stringify({message}));
+    this.stompClient.send('/api/secured/room' , {}, JSON.stringify(message));
   }
 }
