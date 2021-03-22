@@ -1,0 +1,31 @@
+<div class="row" [formGroup]="form">
+  <div class="col-twelve margin-top-bottom">
+    <div class="row">
+      <div class="col-six">
+        <pre>{{ form.value | json }}</pre>
+      </div>
+      <div class="col-six">
+        <div class="row">
+          <div class="col-six">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="name" autocomplete="off" formControlName="name">
+            </mat-form-field>
+          </div>
+          <div class="col-six">
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="surname" autocomplete="off" formControlName="surname">
+            </mat-form-field>
+          </div>
+          <div class="col-nine">
+            <mat-form-field class="full-width">
+              <input matInput type="number" placeholder="age" autocomplete="off" formControlName="age">
+            </mat-form-field>
+          </div>
+          <div class="col-three">
+            <button mat-button class="float-right" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
