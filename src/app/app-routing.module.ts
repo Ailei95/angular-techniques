@@ -28,7 +28,6 @@ export class CustomPreloadingStrategy implements PreloadingStrategy {
       });
   }
 
-
   preload(route: Route, load: () => Observable<any>): Observable<any> {
     if (route.data && route.data.after && this.checkpoints.has(route.data.after)) {
       return timer(route.data.delay ? route.data.delay : 0).pipe(mergeMap(() => load()));
@@ -60,6 +59,11 @@ const routes: Routes = [
     path: 'proxy',
     loadChildren: () => import('./proxy/proxy.module').then(m => m.ProxyModule),
     data: { preload: true, delay: 2000, checkPoint: CheckPoint.Proxy }
+  },
+  {
+    path: 'reactive-form',
+    loadChildren: () => import('./reactive-form/reactive-form.module').then(m => m.ReactiveFormModule),
+    data: { preload: true, delay: 2000 }
   },
   {
     path: '**',

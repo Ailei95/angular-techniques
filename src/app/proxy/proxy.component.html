@@ -1,5 +1,28 @@
 <div class="row">
   <div class="col-twelve margin-top-bottom">
+    <button mat-button (click)="start()" *ngIf="(localStream == null)">start</button>
+    <button mat-button (click)="stop()" *ngIf="!(localStream == null)">stop</button>
+    <button mat-button class="float-right" (click)="set(video, audio = !audio)">
+      audio
+      <mat-icon *ngIf="audio">volume_up</mat-icon>
+      <mat-icon *ngIf="!audio">volume_off</mat-icon>
+    </button>
+    <button mat-button class="float-right" (click)="set(video = !video, audio)">
+      video
+      <mat-icon *ngIf="video">videocam</mat-icon>
+      <mat-icon *ngIf="!video">videocam_off</mat-icon>
+    </button>
+  </div>
+  <div class="col-six">
+    <video #locale></video>
+  </div>
+  <div class="col-six">
+    <video #remote></video>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-twelve margin-top-bottom">
     <mat-card class="card">
       <mat-card-header>
         <mat-card-title>
@@ -19,7 +42,7 @@
       <mat-card-actions>
         <div class="row">
           <div class="col-nine no-pad-right">
-            <mat-form-field class="full-width" *ngIf="serverHeader$ | async">
+            <mat-form-field class="full-width">
               <input matInput type="text" autocomplete="off" (keydown.enter)="send()" #msgRef>
             </mat-form-field>
           </div>
@@ -40,23 +63,6 @@
 <div class="row">
   <div class="col-twelve margin-top-bottom">
     <pre>{{ users$ | async }}</pre>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-twelve" *ngIf="(localStream == null); else close">
-    <button mat-button (click)="start()" >start</button>
-  </div>
-  <ng-template #close>
-    <div class="col-twelve">
-      <button mat-button (click)="stop()">stop</button>
-    </div>
-  </ng-template>
-  <div class="col-six">
-    <video #locale></video>
-  </div>
-  <div class="col-six">
-    <video #remote></video>
   </div>
 </div>
 

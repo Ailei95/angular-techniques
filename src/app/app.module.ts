@@ -16,6 +16,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {HttpClientModule} from '@angular/common/http';
 import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {rxStompConfig} from './socket/socket.conf';
+import { ReactiveFormModule } from './reactive-form/reactive-form.module';
 
 @NgModule({
   declarations: [

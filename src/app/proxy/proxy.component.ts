@@ -48,6 +48,9 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   @ViewChild('locale') locale: ElementRef;
   localStream: MediaStream;
 
+  video = true;
+  audio = true;
+
   constructor(
     private proxyApiService: ProxyApiService,
     // public webSocketMsgService: WebSocketMsgService, // Deprecate
@@ -96,6 +99,7 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   start(): void {
     this._startLocalStream().then(() => {
       this.locale.nativeElement.srcObject = this.localStream;
+      this.set(this.video, this.audio);
       this.locale.nativeElement.play();
       this.changeDetectorRef.detectChanges();
     });
@@ -104,6 +108,15 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   stop(): void {
     this.localStream.getTracks().forEach((track) => track.stop());
     this.localStream = null;
+  }
+
+  set(video: boolean, audio: boolean): void {
+    if (this.localStream) {
+      this.localStream.getTracks().forEach((track) => {
+        if (track.kind === 'video') { track.enabled = video; }
+        else if (track.kind === 'audio') { track.enabled = audio; }
+      });
+    }
   }
 
   send(): void {
@@ -133,7 +146,8 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   private async _startLocalStream(): Promise<void> {
     this.localStream = await navigator.mediaDevices.getUserMedia({
-      video: true
+      video: true,
+      audio: true
     });
   }
 }

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { faPrescription, faMicrochip, faDatabase, faNetworkWired } from '@fortawesome/free-solid-svg-icons';
+import { faPrescription, faMicrochip, faDatabase, faNetworkWired, faFile } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 interface UrlIcon {
@@ -37,6 +37,11 @@ export class MenuComponent implements OnInit {
     this.icons.push({
       icon: faNetworkWired,
       url: '/proxy'
+    });
+
+    this.icons.push({
+      icon: faFile,
+      url: '/reactive-form'
     });
   }
 
