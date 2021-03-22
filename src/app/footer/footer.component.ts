@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -7,24 +7,12 @@ import {Component, NgZone, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(
-    private ngZone: NgZone
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   scrollTop(): void {
-    this.ngZone.runOutsideAngular(() => {
-      const smooth = () => {
-        const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-        if (currentScroll > 0) {
-          window.requestAnimationFrame(smooth);
-          window.scrollTo(0, currentScroll - (currentScroll / 5));
-        }
-      };
-
-      smooth();
-    });
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }
 }
