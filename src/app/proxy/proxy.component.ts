@@ -1,65 +1,120 @@
-import {AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {ProxyApiService} from './proxy-services/proxy-api.service';
-import {Observable, Subscription} from 'rxjs';
+import {Observable, of} from 'rxjs';
 // import {WebSocketMsgService} from '../socket/web-socket-msg.service';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import {IMessage} from '@stomp/stompjs';
 import {map} from 'rxjs/operators';
 
+declare var Peer: any;
+
+export interface Message {
+  from: string;
+  to: string;
+  text: string;
+  timestamp?: number;
+  messageId?: string;
+}
+
 @Component({
   selector: 'app-proxy',
   templateUrl: './proxy.component.html',
-  styleUrls: ['./proxy.component.css']
+  styleUrls: ['./proxy.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
 
-  hello$: Observable<JSON>;
+  hello$: Observable<string>;
 
   @ViewChild('msgRef') msgRef: ElementRef;
   @ViewChild('content') content: ElementRef;
 
-  msg: string;
-  receivedMessages: string[] = [];
+  serverHeader$: Observable<any>;
 
-  sub: Subscription;
+  lastMessage$: Observable<string>;
+  receivedMessages$: Observable<string[]> = of([]);
 
-  users$: Observable<string>;
+  users$: Observable<string[]>;
+
+  @ViewChild('locale') locale: ElementRef;
+  localStream: MediaStream;
 
   constructor(
     private proxyApiService: ProxyApiService,
     // public webSocketMsgService: WebSocketMsgService, // Deprecate
-    private rxStompService: RxStompService
+    private rxStompService: RxStompService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
-    // this.rxStompService.activate();
-
+/*
     this.sub = this.rxStompService.watch('/api/message').subscribe((message: IMessage) => {
-      this.receivedMessages.push(JSON.stringify(
-        {
-          ...JSON.parse(message.body),
-          'message-id': message.headers['message-id']
-        }));
+      this.receivedMessages$ = this.receivedMessages$.pipe(
+        map((messages: string[]) => [...messages, JSON.stringify({
+            ...JSON.parse(message.body), 'message-id': message.headers['message-id']
+          })])
+      );
     });
+*/
+    this.serverHeader$ = this.rxStompService.serverHeaders$;
+
+    // Not necessary to unsubscribe
+    this.lastMessage$ = this.rxStompService.watch('/api/message')
+      .pipe(map((message: IMessage) => {
+        this.receivedMessages$ = this.receivedMessages$.pipe(
+          map((messages: string[]) => [...messages, JSON.stringify({
+            ...JSON.parse(message.body), messageId: message.headers['message-id']
+          })])
+        );
+        return JSON.stringify({
+          ...JSON.parse(message.body), messageId: message.headers['message-id']
+        } as Message);
+      }));
 
     this.users$ = this.rxStompService.watch('/api/users')
-      .pipe(map((message: IMessage) => JSON.stringify(message.body)));
+      .pipe(map((message: IMessage) => JSON.parse(message.body)));
   }
 
   ngOnInit(): void {
     this.hello$ = this.proxyApiService.getHello();
+
+    const peer = new Peer('pick-an-id', { host: 'localhost', port: 8080, path: '/' });
+
+    const conn = peer.connect('another-peers-id');
+    conn.on('open', () => {
+      conn.send('hi!');
+    });
   }
 
-  sendMessage(): void {
+  start(): void {
+    this._startLocalStream().then(() => {
+      this.locale.nativeElement.srcObject = this.localStream;
+      this.locale.nativeElement.play();
+      this.changeDetectorRef.detectChanges();
+    });
+  }
+
+  stop(): void {
+    this.localStream.getTracks().forEach((track) => track.stop());
+    this.localStream = null;
+  }
+
+  send(): void {
     if (this.msgRef.nativeElement.value.length > 0) {
       this.rxStompService.publish({
         destination: '/api/send/message',
         body: JSON.stringify({
-          message: this.msgRef.nativeElement.value
-        })
-      });
-
-      this.rxStompService.publish({
-        destination: '/api/fetch/users',
-        body: JSON.stringify({})
+          from: null,
+          to: null,
+          text: this.msgRef.nativeElement.value
+        } as Message)
       });
 
       this.msgRef.nativeElement.value = '';
@@ -71,7 +126,14 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    // this.rxStompService.deactivate().then(() => null);
+    if (this.localStream) {
+      this.localStream.getTracks().forEach((track) => track.stop());
+    }
+  }
+
+  private async _startLocalStream(): Promise<void> {
+    this.localStream = await navigator.mediaDevices.getUserMedia({
+      video: true
+    });
   }
 }

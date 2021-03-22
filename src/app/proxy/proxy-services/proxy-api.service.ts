@@ -12,7 +12,7 @@ export class ProxyApiService {
     private httpClient: HttpClient
   ) { }
 
-  getHello(): Observable<JSON> {
-    return this.httpClient.get<JSON>(environment.url + 'api/hello');
+  getHello(): Observable<string> {
+    return this.httpClient.get<string>(environment.url + 'api/hello');
   }
 }
