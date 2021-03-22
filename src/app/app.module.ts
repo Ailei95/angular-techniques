@@ -16,7 +16,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {HttpClientModule} from '@angular/common/http';
 import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {rxStompConfig} from './socket/socket.conf';
-import { ReactiveFormModule } from './reactive-form/reactive-form.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { ReactiveFormModule } from './reactive-form/reactive-form.module';
     StoreDevtoolsModule.instrument({
       maxAge: 20
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    SharedModule
   ],
   providers: [
     CustomPreloadingStrategy,

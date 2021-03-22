@@ -1,4 +1,4 @@
-<div class="row" [formGroup]="form">
+<div class="row" id="reactive-form" [formGroup]="form">
   <div class="col-twelve margin-top-bottom">
     <div class="row">
       <div class="col-six">
@@ -8,17 +8,20 @@
         <div class="row">
           <div class="col-six">
             <mat-form-field class="full-width">
-              <input matInput type="text" placeholder="name" autocomplete="off" formControlName="name">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" autocomplete="off" formControlName="name">
             </mat-form-field>
           </div>
           <div class="col-six">
             <mat-form-field class="full-width">
-              <input matInput type="text" placeholder="surname" autocomplete="off" formControlName="surname">
+              <mat-label>Surname</mat-label>
+              <input matInput type="text" autocomplete="off" formControlName="surname">
             </mat-form-field>
           </div>
           <div class="col-nine">
             <mat-form-field class="full-width">
-              <input matInput type="number" placeholder="age" autocomplete="off" formControlName="age">
+              <mat-label>Age</mat-label>
+              <input matInput type="number" autocomplete="off" formControlName="age">
             </mat-form-field>
           </div>
           <div class="col-three">

@@ -1,10 +1,11 @@
-<div class="row">
+<div class="row" id="gpu">
   <div class="col-twelve">
     <mat-checkbox class="float-right" [color]="'primary'" #ElementHide>Hide matrices</mat-checkbox>
   </div>
   <div class="col-six">
     <mat-form-field>
-      <input matInput placeholder="Matrices dimension" type="number" autocomplete="off"
+      <mat-label>Matrices dimension</mat-label>
+      <input matInput type="number" autocomplete="off"
              [ngModel]="matrixSize$ | async" #ElementMatrixSize>
     </mat-form-field>
     <button mat-button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)">GENERATE MATRICES</button>
