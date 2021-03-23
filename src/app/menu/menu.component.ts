@@ -5,7 +5,6 @@ import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 interface UrlIcon {
   icon: IconDefinition;
   url: string;
-  id: string;
 }
 
 @Component({
@@ -22,36 +21,30 @@ export class MenuComponent implements OnInit {
 
     this.icons.push({
       icon: faPrescription,
-      url: '/ngrx',
-      id: 'ngrx'
+      url: '/ngrx'
     });
 
     this.icons.push({
       icon: faMicrochip,
-      url: '/gpu',
-      id: 'gpu'
+      url: '/gpu'
     });
 
     this.icons.push({
       icon: faDatabase,
-      url: '/database',
-      id: 'database'
+      url: '/database'
     });
 
     this.icons.push({
       icon: faNetworkWired,
-      url: '/proxy',
-      id: 'proxy'
+      url: '/proxy'
     });
 
     this.icons.push({
       icon: faFile,
-      url: '/reactive-form',
-      id: 'reactive-form'
+      url: '/reactive-form'
     });
   }
 
   ngOnInit(): void {
   }
-
 }

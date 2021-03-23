@@ -36,6 +36,34 @@ export class BackTopComponent implements OnInit, OnDestroy {
   }
 
   scrollTop(): void {
+/*
+    this.ngZone.runOutsideAngular(() => {
+      let onePercentSuccession = 23;
+
+      const scrollToTop = window.setInterval(() => {
+        const pos = window.pageYOffset;
+        if (pos > 0) {
+          window.scrollTo(0, pos - onePercentSuccession);
+
+          onePercentSuccession *= 1.02;
+        } else {
+          window.clearInterval(scrollToTop);
+        }
+      }, 11);
+    });
+
+    this.ngZone.runOutsideAngular(() => {
+      const smooth = () => {
+        const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (currentScroll > 0) {
+          window.requestAnimationFrame(smooth);
+          window.scrollTo(0, currentScroll - (currentScroll / 5));
+        }
+      };
+
+      smooth();
+    });
+*/
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }
 

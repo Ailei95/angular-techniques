@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ComponentCanDeactivate} from '../shared/pending-changes-guard/pending-changes-guard';
 import {Observable} from 'rxjs';
@@ -8,9 +8,11 @@ import {Observable} from 'rxjs';
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.css']
 })
-export class ReactiveFormComponent implements ComponentCanDeactivate, OnInit {
+export class ReactiveFormComponent implements ComponentCanDeactivate, OnInit, OnDestroy {
 
   form: FormGroup;
+
+  callback: (event) => void;
 
   constructor(
     private formBuilder: FormBuilder
@@ -23,6 +25,11 @@ export class ReactiveFormComponent implements ComponentCanDeactivate, OnInit {
   }
 
   ngOnInit(): void {
+    window.addEventListener('beforeunload', this.callback = (event) => {
+      if (!this.canDeactivate()) {
+        event.returnValue = confirm();
+      }
+    }, false);
   }
 
   reset(): void {
@@ -33,10 +40,7 @@ export class ReactiveFormComponent implements ComponentCanDeactivate, OnInit {
     return !this.form.dirty;
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  beforeunload($event: any): void {
-    if (!this.canDeactivate()) {
-      $event.returnValue = confirm();
-    }
+  ngOnDestroy(): void {
+    window.removeEventListener('beforeunload', this.callback, false);
   }
 }
