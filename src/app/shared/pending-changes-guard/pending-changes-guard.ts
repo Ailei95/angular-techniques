@@ -10,6 +10,6 @@ export interface ComponentCanDeactivate {
 export class PendingChangesGuard implements CanDeactivate <ComponentCanDeactivate> {
   canDeactivate(component: ComponentCanDeactivate): boolean | Observable < boolean > {
     return component.canDeactivate() ?
-      true : confirm();
+      true : confirm('Le modifiche apportate potrebbero non essere salvate.');
   }
 }

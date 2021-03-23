@@ -4,20 +4,25 @@ import { InfinityScrollComponent } from './infinity-scroll/infinity-scroll.compo
 import { BackTopComponent } from './back-top/back-top.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
     InfinityScrollComponent,
-    BackTopComponent
+    BackTopComponent,
+    ProgressBarComponent
   ],
   exports: [
     InfinityScrollComponent,
-    BackTopComponent
+    BackTopComponent,
+    ProgressBarComponent
   ],
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule
   ]
 })
 export class SharedModule { }

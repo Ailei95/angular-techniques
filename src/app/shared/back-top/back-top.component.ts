@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-back-top',
@@ -6,10 +6,10 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnInit} f
   styleUrls: ['./back-top.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BackTopComponent implements OnInit {
+export class BackTopComponent implements OnInit, OnDestroy {
 
   showScroll: boolean;
-  showScrollHeight = 300;
+  showScrollHeight = 400;
   hideScrollHeight = 150;
 
   callback: () => void;
@@ -37,5 +37,9 @@ export class BackTopComponent implements OnInit {
 
   scrollTop(): void {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.callback, false);
   }
 }
