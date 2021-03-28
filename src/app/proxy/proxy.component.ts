@@ -14,6 +14,7 @@ import {Observable, of} from 'rxjs';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import {IMessage} from '@stomp/stompjs';
 import {map} from 'rxjs/operators';
+import { environment } from 'src/environments/environment'
 
 declare var Peer: any;
 
@@ -88,7 +89,7 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   ngOnInit(): void {
     this.hello$ = this.proxyApiService.getHello();
 
-    const peer = new Peer('pick-an-id', { host: 'localhost', port: 8080, path: '/' });
+    const peer = new Peer('pick-an-id', { host: environment.url, port: environment.port, path: '/' });
 
     const conn = peer.connect('another-peers-id');
     conn.on('open', () => {

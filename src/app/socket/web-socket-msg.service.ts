@@ -21,11 +21,11 @@ export class WebSocketMsgService {
   }
 
   initializeWebSocketConnection(): void {
-    const ws = new SockJS(environment.url + 'api/socket');
+    const ws = new SockJS(environment.url + '/api/socket');
 
     this.stompClient = Stomp.over(ws);
 
-    this.stompClient.connect({}, (frame) => {
+    this.stompClient.connect({}, () => {
       this.stompClient.subscribe('/user/queue/reply', (message) => {
         console.log(message);
       });

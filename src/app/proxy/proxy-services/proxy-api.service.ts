@@ -13,6 +13,6 @@ export class ProxyApiService {
   ) { }
 
   getHello(): Observable<string> {
-    return this.httpClient.get<string>(environment.url + 'api/hello');
+    return this.httpClient.get<string>(environment.url + '/api/hello');
   }
 }
