@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NgrxHomeComponent } from './ngrx-home.component';
+import {NgrxHomeComponent} from './ngrx-home.component';
 
 describe('NgrxHomeComponent', () => {
   let component: NgrxHomeComponent;
@@ -8,9 +8,9 @@ describe('NgrxHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgrxHomeComponent ]
+      declarations: [NgrxHomeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

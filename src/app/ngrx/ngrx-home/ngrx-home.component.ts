@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { increment, decrement, reset } from '../store/counter.actions';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {decrement, increment, reset} from '../store/counter.actions';
 
 @Component({
   selector: 'app-ngrx-home',

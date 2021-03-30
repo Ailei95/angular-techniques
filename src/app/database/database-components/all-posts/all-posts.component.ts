@@ -4,7 +4,6 @@ import {JsonPlaceholderApiService} from '../../database-services/json-placeholde
 import {Post} from '../../models/post';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
-import {Album} from '../../models/album';
 
 @Component({
   selector: 'app-all-posts',

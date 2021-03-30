@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, NgZone, OnInit, Output, ViewChild, EventEmitter, OnDestroy} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, NgZone, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-infinity-scroll',
@@ -16,7 +16,8 @@ export class InfinityScrollComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngZone: NgZone
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {

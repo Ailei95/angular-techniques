@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { AllAlbumsRoutingModule } from './all-albums-routing.module';
-import { AllAlbumsComponent } from './all-albums.component';
-import { CardModule } from '../../card/card.module';
-import { MaterialModule } from '../../../shared/material/material.module';
+import {AllAlbumsRoutingModule} from './all-albums-routing.module';
+import {AllAlbumsComponent} from './all-albums.component';
+import {CardModule} from '../../card/card.module';
+import {MaterialModule} from '../../../shared/material/material.module';
 import {SharedModule} from '../../../shared/shared.module';
 
 
@@ -18,4 +18,5 @@ import {SharedModule} from '../../../shared/shared.module';
     SharedModule
   ]
 })
-export class AllAlbumsModule { }
+export class AllAlbumsModule {
+}

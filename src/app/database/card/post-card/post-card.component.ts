@@ -19,7 +19,8 @@ export class PostCardComponent implements OnInit {
 
   constructor(
     private jsonPlaceholderApiService: JsonPlaceholderApiService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.user$ = this.jsonPlaceholderApiService.getUsers({id: this.post.userId})

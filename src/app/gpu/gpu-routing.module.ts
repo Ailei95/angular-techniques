@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { GpuHomeComponent } from './gpu-home/gpu-home.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {GpuHomeComponent} from './gpu-home/gpu-home.component';
 
-const routes: Routes = [  {
+const routes: Routes = [{
   path: '',
   component: GpuHomeComponent
 }];
@@ -11,4 +11,5 @@ const routes: Routes = [  {
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GpuRoutingModule { }
+export class GpuRoutingModule {
+}

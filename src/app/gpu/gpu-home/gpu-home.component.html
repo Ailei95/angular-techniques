@@ -8,7 +8,9 @@
       <input matInput type="number" autocomplete="off"
              [ngModel]="matrixSize$ | async" #ElementMatrixSize>
     </mat-form-field>
-    <button mat-button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)">GENERATE MATRICES</button>
+    <button mat-button appNativeMobileButton (shortPress)="generateMatrices(ElementMatrixSize.value)">GENERATE
+      MATRICES
+    </button>
     <button mat-button appNativeMobileButton (shortPress)="clear()">CLEAR</button>
   </div>
   <div class="col-six">

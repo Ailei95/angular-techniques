@@ -18,7 +18,8 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   constructor(
     private ngZone: NgZone,
     private changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.ngZone.runOutsideAngular(() => {

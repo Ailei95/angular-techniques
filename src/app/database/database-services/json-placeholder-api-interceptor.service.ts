@@ -11,11 +11,13 @@ export class JsonPlaceholderApiInterceptorService implements HttpInterceptor {
 
   constructor(
     private _snackBar: MatSnackBar
-  ) { }
+  ) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      tap(() => {}),
+      tap(() => {
+      }),
       catchError((error: HttpErrorResponse) => {
 
         this._snackBar.open(error.message, 'OK', {

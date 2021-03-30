@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ProxyApiService } from './proxy-api.service';
+import {ProxyApiService} from './proxy-api.service';
 
 describe('ProxyApiService', () => {
   let service: ProxyApiService;

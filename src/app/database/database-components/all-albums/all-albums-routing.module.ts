@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AllAlbumsComponent } from './all-albums.component';
+import {AllAlbumsComponent} from './all-albums.component';
 
-const routes: Routes = [  {
+const routes: Routes = [{
   path: '',
   component: AllAlbumsComponent
 }];
@@ -12,4 +12,5 @@ const routes: Routes = [  {
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AllAlbumsRoutingModule { }
+export class AllAlbumsRoutingModule {
+}

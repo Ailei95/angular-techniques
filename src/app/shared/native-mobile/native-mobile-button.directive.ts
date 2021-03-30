@@ -7,7 +7,8 @@ export class NativeMobileButtonDirective {
 
   @Output() shortPress = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   @HostBinding('style.touch-action') touchAction = 'manipulation';
   @HostBinding('style.user-select') userSelect = 'none';

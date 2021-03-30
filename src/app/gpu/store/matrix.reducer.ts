@@ -36,7 +36,7 @@ export const matrixReducer = createReducer(
         }
       }
 
-      return {...initialState, matrixSize: action.matrixSize, matrixA, matrixB };
+      return {...initialState, matrixSize: action.matrixSize, matrixA, matrixB};
     } else {
       return {...state};
     }
@@ -82,7 +82,11 @@ export const matrixReducer = createReducer(
       const product = multiplyMatrix(state.matrixA, state.matrixB, state.matrixSize) as Array<any>;
       const endTime = performance.now();
 
-      return {...state, gpuTime: (endTime - startTime), matrixResult: product.map((float32Array: Float32Array) => Array.from(float32Array))};
+      return {
+        ...state,
+        gpuTime: (endTime - startTime),
+        matrixResult: product.map((float32Array: Float32Array) => Array.from(float32Array))
+      };
     } else {
       return {...state};
     }

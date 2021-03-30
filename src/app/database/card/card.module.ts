@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../../shared/material/material.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MaterialModule} from '../../shared/material/material.module';
 
 import {UserCardComponent} from './user-card/user-card.component';
 import {TodoCardComponent} from './todo-card/todo-card.component';
@@ -33,4 +33,5 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     PostCardComponent
   ]
 })
-export class CardModule { }
+export class CardModule {
+}

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {NgrxHomeComponent} from './ngrx-home/ngrx-home.component';
 
 const routes: Routes = [
@@ -15,4 +15,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class NgrxRoutingModule { }
+export class NgrxRoutingModule {
+}

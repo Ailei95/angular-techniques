@@ -2,17 +2,19 @@
   <div class="col-four margin-top-bottom" *ngFor="let user of users$ | async">
     <app-user-card [user]="user">
       <button mat-button
-        [routerLink]="['../all-albums']" [queryParams]="{userId: user.id}" >Albums</button>
+              [routerLink]="['../all-albums']" [queryParams]="{userId: user.id}">Albums
+      </button>
       <button mat-button
-        [routerLink]="['../all-posts']" [queryParams]="{userId: user.id}" >Posts</button>
+              [routerLink]="['../all-posts']" [queryParams]="{userId: user.id}">Posts
+      </button>
     </app-user-card>
   </div>
 </div>
 <div class="row">
   <div class="col-twelve">
     <mat-paginator (page)="onPageChange($event)"
-     [length]="length$ | async"
-     [pageSize]="10"
-     [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+                   [length]="length$ | async"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

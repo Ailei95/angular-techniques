@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { WebSocketMsgService } from './web-socket-msg.service';
+import {WebSocketMsgService} from './web-socket-msg.service';
 
 describe('WebSocketMsgService', () => {
   let service: WebSocketMsgService;

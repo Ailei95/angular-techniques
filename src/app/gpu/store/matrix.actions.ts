@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 
-export const generateMatrix = createAction('[Matrix Component] generateMatrix', props<{matrixSize: number}>());
+export const generateMatrix = createAction('[Matrix Component] generateMatrix', props<{ matrixSize: number }>());
 
 export const cpuMultiplyMatrix = createAction('[Matrix Component] cpuMultiplyMatrix');
 

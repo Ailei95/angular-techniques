@@ -1,4 +1,4 @@
-import { NativeMobileButtonDirective } from './native-mobile-button.directive';
+import {NativeMobileButtonDirective} from './native-mobile-button.directive';
 
 describe('NativeMobileButtonDirective', () => {
   it('should create an instance', () => {

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { faPrescription, faMicrochip, faDatabase, faNetworkWired, faFile } from '@fortawesome/free-solid-svg-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import {faDatabase, faFile, faMicrochip, faNetworkWired, faPrescription} from '@fortawesome/free-solid-svg-icons';
+import {IconDefinition} from '@fortawesome/fontawesome-common-types';
 
 interface UrlIcon {
   icon: IconDefinition;

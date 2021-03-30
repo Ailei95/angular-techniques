@@ -10,7 +10,8 @@ export class CommentCardComponent implements OnInit {
 
   @Input() comment: Comment;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

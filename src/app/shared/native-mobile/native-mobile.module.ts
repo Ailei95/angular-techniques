@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NativeMobileButtonDirective } from './native-mobile-button.directive';
-import { NativeMobileButtonLongPressDirective } from './native-mobile-button-long-press.directive';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NativeMobileButtonDirective} from './native-mobile-button.directive';
+import {NativeMobileButtonLongPressDirective} from './native-mobile-button-long-press.directive';
 
 
 @NgModule({
@@ -11,4 +11,5 @@ import { NativeMobileButtonLongPressDirective } from './native-mobile-button-lon
   ],
   exports: [NativeMobileButtonDirective, NativeMobileButtonLongPressDirective]
 })
-export class NativeMobileModule { }
+export class NativeMobileModule {
+}

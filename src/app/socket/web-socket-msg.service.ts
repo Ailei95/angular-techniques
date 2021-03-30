@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import {Injectable} from '@angular/core';
+import {environment} from 'src/environments/environment';
 
 // TODO Delete dependencies in angular.json and assets/js
 declare var SockJS;
@@ -33,6 +33,6 @@ export class WebSocketMsgService {
   }
 
   sendMessage(message): void {
-    this.stompClient.send('/api/secured/room' , {}, JSON.stringify(message));
+    this.stompClient.send('/api/secured/room', {}, JSON.stringify(message));
   }
 }

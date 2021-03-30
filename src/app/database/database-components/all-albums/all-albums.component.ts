@@ -18,7 +18,7 @@ export class AllAlbumsComponent implements OnInit {
   albumsLength: number;
   albumsToShow: number;
 
-  // Not needed since albums$ not changes
+  // Not needed since albums$ doesn't change
   trackByIndex = (index: number): number => index;
 
   constructor(

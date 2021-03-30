@@ -32,7 +32,7 @@ export class AllUsersComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(
       (queryParams) => {
-        this.store.dispatch(fetchUsers({ payload: queryParams }));
+        this.store.dispatch(fetchUsers({payload: queryParams}));
       });
   }
 

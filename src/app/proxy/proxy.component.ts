@@ -14,7 +14,7 @@ import {Observable, of} from 'rxjs';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import {IMessage} from '@stomp/stompjs';
 import {map} from 'rxjs/operators';
-import { environment } from 'src/environments/environment'
+import {environment} from 'src/environments/environment';
 
 declare var Peer: any;
 
@@ -58,15 +58,15 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
     private rxStompService: RxStompService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-/*
-    this.sub = this.rxStompService.watch('/api/message').subscribe((message: IMessage) => {
-      this.receivedMessages$ = this.receivedMessages$.pipe(
-        map((messages: string[]) => [...messages, JSON.stringify({
-            ...JSON.parse(message.body), 'message-id': message.headers['message-id']
-          })])
-      );
-    });
-*/
+    /*
+        this.sub = this.rxStompService.watch('/api/message').subscribe((message: IMessage) => {
+          this.receivedMessages$ = this.receivedMessages$.pipe(
+            map((messages: string[]) => [...messages, JSON.stringify({
+                ...JSON.parse(message.body), 'message-id': message.headers['message-id']
+              })])
+          );
+        });
+    */
     this.serverHeader$ = this.rxStompService.serverHeaders$;
 
     // Not necessary to unsubscribe
@@ -89,7 +89,7 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   ngOnInit(): void {
     this.hello$ = this.proxyApiService.getHello();
 
-    const peer = new Peer('pick-an-id', { host: environment.url, port: environment.port, path: '/' });
+    const peer = new Peer('pick-an-id', {host: environment.url, port: environment.port, path: '/'});
 
     const conn = peer.connect('another-peers-id');
     conn.on('open', () => {
@@ -114,8 +114,11 @@ export class ProxyComponent implements OnInit, AfterViewChecked, OnDestroy {
   set(video: boolean, audio: boolean): void {
     if (this.localStream) {
       this.localStream.getTracks().forEach((track) => {
-        if (track.kind === 'video') { track.enabled = video; }
-        else if (track.kind === 'audio') { track.enabled = audio; }
+        if (track.kind === 'video') {
+          track.enabled = video;
+        } else if (track.kind === 'audio') {
+          track.enabled = audio;
+        }
       });
     }
   }

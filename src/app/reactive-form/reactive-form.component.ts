@@ -36,7 +36,7 @@ export class ReactiveFormComponent implements ComponentCanDeactivate, OnInit, On
     this.form.reset();
   }
 
-  canDeactivate(): Observable < boolean > | boolean {
+  canDeactivate(): Observable<boolean> | boolean {
     return !this.form.dirty;
   }
 

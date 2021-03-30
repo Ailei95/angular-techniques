@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PendingChangesGuard } from './pending-changes-guard';
+import {PendingChangesGuard} from './pending-changes-guard';
 
 describe('PendingChangesGuardService', () => {
   let service: PendingChangesGuard;

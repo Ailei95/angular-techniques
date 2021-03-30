@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { JsonPlaceholderApiInterceptorService } from './json-placeholder-api-interceptor.service';
+import {JsonPlaceholderApiInterceptorService} from './json-placeholder-api-interceptor.service';
 
 describe('JsonPlaceholderApiInterceptorService', () => {
   let service: JsonPlaceholderApiInterceptorService;

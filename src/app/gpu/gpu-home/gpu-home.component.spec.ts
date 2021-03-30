@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GpuHomeComponent } from './gpu-home.component';
+import {GpuHomeComponent} from './gpu-home.component';
 
 describe('GpuHomeComponent', () => {
   let component: GpuHomeComponent;
@@ -8,9 +8,9 @@ describe('GpuHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GpuHomeComponent ]
+      declarations: [GpuHomeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

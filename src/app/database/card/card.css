@@ -36,6 +36,7 @@
   border-radius: 50%;
   animation: loader 1s linear infinite;
 }
+
 .img-container > img {
   position: absolute;
   top: 0;
@@ -45,12 +46,13 @@
   width: 100% !important;
   height: 100% !important;
 }
+
 @keyframes loader {
   0% {
-    transform: translate(-50%,-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: translate(-50%,-50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -58,7 +60,7 @@ p {
   margin-bottom: unset !important;
   white-space: nowrap;
   overflow: hidden;
-  ext-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 .ripple-container {

@@ -11,7 +11,8 @@ export class PhotoCardComponent implements OnInit {
 
   @Input() photo: Photo;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

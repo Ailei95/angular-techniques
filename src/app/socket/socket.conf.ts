@@ -1,5 +1,5 @@
-import { InjectableRxStompConfig } from '@stomp/ng2-stompjs';
-import { environment } from 'src/environments/environment';
+import {InjectableRxStompConfig} from '@stomp/ng2-stompjs';
+import {environment} from 'src/environments/environment';
 
 export const rxStompConfig: InjectableRxStompConfig = {
   brokerURL: environment.ws + '/api/socket',
