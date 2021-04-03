@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="4702162755036058097" datatype="html">
+        <source>Current Count: <x id="INTERPOLATION" equiv-text="{{ count$ | async }}"/></source>
+        <target>Conto attuale: <x id="INTERPOLATION" equiv-text="{{ count$ | async }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/ngrx/ngrx-home/ngrx-home.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5748488974262133474" datatype="html">
+        <source> INCREMENT </source>
+        <target> INCREMENTA </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/ngrx/ngrx-home/ngrx-home.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <note priority="1" from="description">increment a number</note>
+      </trans-unit>
+      <trans-unit id="2570470957253666654" datatype="html">
+        <source> DECREMENT </source>
+        <target> DECREMENTA</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/ngrx/ngrx-home/ngrx-home.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <note priority="1" from="description">decrement a number</note>
+      </trans-unit>
+      <trans-unit id="8685411700551957419" datatype="html">
+        <source> RESET COUNTER </source>
+        <target> RESETTA CONTATORE </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/ngrx/ngrx-home/ngrx-home.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

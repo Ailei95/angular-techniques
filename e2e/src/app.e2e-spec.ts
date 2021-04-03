@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should display 5 items on menu', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('underconstruction app is running!');
+    expect(await page.getMenuElements().then(console.log));
   });
 
   afterEach(async () => {

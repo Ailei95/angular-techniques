@@ -18,6 +18,8 @@ import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@s
 import {rxStompConfig} from './socket/socket.conf';
 import {SharedModule} from './shared/shared.module';
 import {CustomPreloadingStrategy} from './shared/preloading-strategy/custom-preloading-strategy';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,13 @@ import {CustomPreloadingStrategy} from './shared/preloading-strategy/custom-prel
       maxAge: 20
     }),
     EffectsModule.forRoot([]),
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     CustomPreloadingStrategy,

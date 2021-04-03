@@ -1,10 +1,17 @@
 <div class="row" id="ngrx">
   <div class="col-twelve">
-    <h1>Current Count: {{ count$ | async }}</h1>
-    <button mat-button appNativeMobileButtonLongPress (shortPress)="increment()" (longPress)="increment()">INCREMENT
+    <h1 i18n>Current Count: {{ count$ | async }}</h1>
+    <button mat-button appNativeMobileButtonLongPress i18n="increment a number"
+            (shortPress)="increment()" (longPress)="increment()">
+      INCREMENT
     </button>
-    <button mat-button appNativeMobileButtonLongPress (shortPress)="decrement()" (longPress)="decrement()">DECREMENT
+    <button mat-button appNativeMobileButtonLongPress i18n="decrement a number"
+            (shortPress)="decrement()" (longPress)="decrement()">
+      DECREMENT
     </button>
-    <button mat-button appNativeMobileButton (click)="reset()">RESET COUNTER</button>
+    <button mat-button appNativeMobileButton i18n
+            (click)="reset()">
+      RESET COUNTER
+    </button>
   </div>
 </div>
