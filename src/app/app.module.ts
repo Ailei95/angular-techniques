@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -18,8 +18,8 @@ import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@s
 import {rxStompConfig} from './socket/socket.conf';
 import {SharedModule} from './shared/shared.module';
 import {CustomPreloadingStrategy} from './shared/preloading-strategy/custom-preloading-strategy';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [

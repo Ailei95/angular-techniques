@@ -10,9 +10,15 @@
       "sourceRoot": "src",
       "prefix": "app",
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": {
+          "code": "en-US",
+          "baseHref": ""
+        },
         "locales": {
-          "it-IT": "src/locale/messages.it-IT.xlf"
+          "it": {
+            "translation": "src/locale/messages.it.xlf",
+            "baseHref": "it"
+          }
         }
       },
       "architect": {
@@ -24,7 +30,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "localize": true,
+            "localize": ["it"],
             "aot": true,
             "assets": [
               "src/favicon.ico",
