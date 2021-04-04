@@ -1,6 +1,10 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AllAlbumsComponent} from './all-albums.component';
+import {HttpClientModule} from '@angular/common/http';
+import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('AllAlbumsComponent', () => {
   let component: AllAlbumsComponent;
@@ -8,6 +12,12 @@ describe('AllAlbumsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      // TODO Handle component with multiple dependencies recursively
+      imports: [HttpClientModule],
+      providers: [
+        JsonPlaceholderApiService,
+        {provide: ActivatedRoute, useValue: { queryParams: of(null)}}
+      ],
       declarations: [AllAlbumsComponent]
     })
       .compileComponents();

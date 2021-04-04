@@ -23,8 +23,10 @@ export class PostCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user$ = this.jsonPlaceholderApiService.getUsers({id: this.post.userId})
-      .pipe(map((users: User[]) => users[0]));
+    if (this.post) {
+      this.user$ = this.jsonPlaceholderApiService.getUsers({id: this.post.userId})
+        .pipe(map((users: User[]) => users[0]));
+    }
   }
 
 }

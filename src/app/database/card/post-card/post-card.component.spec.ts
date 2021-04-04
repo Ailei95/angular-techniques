@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PostCardComponent} from './post-card.component';
+import {JsonPlaceholderApiService} from '../../database-services/json-placeholder-api.service';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('PostCardComponent', () => {
   let component: PostCardComponent;
@@ -8,6 +10,9 @@ describe('PostCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      // TODO Handle component with multiple dependencies recursively
+      imports: [HttpClientModule],
+      providers: [JsonPlaceholderApiService],
       declarations: [PostCardComponent]
     })
       .compileComponents();

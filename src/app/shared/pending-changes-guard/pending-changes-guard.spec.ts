@@ -2,11 +2,11 @@ import {TestBed} from '@angular/core/testing';
 
 import {PendingChangesGuard} from './pending-changes-guard';
 
-describe('PendingChangesGuardService', () => {
+describe('PendingChangesGuard', () => {
   let service: PendingChangesGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({providers: [PendingChangesGuard]});
     service = TestBed.inject(PendingChangesGuard);
   });
 

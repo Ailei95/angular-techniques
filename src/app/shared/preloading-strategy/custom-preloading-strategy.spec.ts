@@ -1,12 +1,16 @@
 import {TestBed} from '@angular/core/testing';
 
 import {CustomPreloadingStrategy} from './custom-preloading-strategy';
+import {RouterModule} from '@angular/router';
 
-describe('CustomPreloadingStrategyService', () => {
+describe('CustomPreloadingStrategy', () => {
   let service: CustomPreloadingStrategy;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [RouterModule.forRoot([])],
+      providers: [CustomPreloadingStrategy]
+    });
     service = TestBed.inject(CustomPreloadingStrategy);
   });
 

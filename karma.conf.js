@@ -32,6 +32,15 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    files: [
+      './src/assets/js/sockjs.min.js',
+      "./src/assets/js/stomp.min.js",
+      "./src/assets/js/modernizr.js",
+      "./src/assets/js/jquery-2.1.3.min.js",
+      "./src/assets/js/plugins.js",
+      "./src/assets/js/main.js",
+      "./node_modules/peerjs/dist/peerjs.min.js"
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

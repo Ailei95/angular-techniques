@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {GpuHomeComponent} from './gpu-home.component';
+import {StoreModule} from '@ngrx/store';
 
 describe('GpuHomeComponent', () => {
   let component: GpuHomeComponent;
@@ -8,6 +9,8 @@ describe('GpuHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      // TODO Handle StoreModule dependency
+      imports: [StoreModule.forRoot({})],
       declarations: [GpuHomeComponent]
     })
       .compileComponents();

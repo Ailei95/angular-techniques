@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 
+// import * as SockJS from 'src/assets/js/sockjs.min';
+// import * as Stomp from 'src/assets/js/stomp.min';
+
 // TODO Delete dependencies in angular.json and assets/js
 declare var SockJS;
 declare var Stomp;
