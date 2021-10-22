@@ -12,4 +12,8 @@ export class AppComponent {
   change(): void {
     console.log('change');
   }
+
+  test(): void {
+    console.log('test');
+  }
 }
